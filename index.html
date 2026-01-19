@@ -10,338 +10,530 @@
 
   <style>
     :root{
-      --turquoise:#2ec4b6;
-      --deep-turquoise:#27b3a2;
-      --sand:#f4e6d6;
-      --sunset:#ff7a59;
-      --ink:#073b3a;
-      --muted:#6b7b7a;
-      --card-bg: rgba(255,255,255,0.95);
-      --glass: rgba(255,255,255,0.6);
-      --max-width: 980px;
+      /* Xcaret-ish: warm stone + deep jungle/jade + soft gold */
+      --stone-50:#fbfaf7;
+      --stone-100:#f4f1ea;
+      --stone-200:#e9e2d7;
+      --ink:#1f2d2b;
+      --muted:#5d6b69;
+
+      --jade-600:#1f8f83;
+      --jade-700:#167a70;
+
+      --gold-500:#c6a25b;
+
+      --card:rgba(255,255,255,.92);
+      --card-solid:#ffffff;
+      --shadow: 0 16px 40px rgba(9,20,18,.10);
+
+      --radius-lg: 18px;
+      --radius-md: 14px;
+
+      --max: 1040px;
     }
 
-    /* Optional background image (commented). Uncomment and replace URL to enable.
-    body::before{
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image: url('your-background.jpg');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.25;
-      filter: blur(1px) saturate(1.05);
-      z-index: -2;
-    }
-    */
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
 
     body{
       margin:0;
       font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       color: var(--ink);
-      background: linear-gradient(180deg, #eafaf8 0%, #fcfaf8 60%);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.45;
-      padding: 32px 16px;
-      display:flex;
-      justify-content:center;
+      background:
+        radial-gradient(1200px 800px at 20% -10%, rgba(31,143,131,.10), transparent 55%),
+        radial-gradient(900px 700px at 90% 10%, rgba(198,162,91,.10), transparent 55%),
+        linear-gradient(180deg, var(--stone-100) 0%, var(--stone-50) 55%, #ffffff 100%);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height:1.55;
     }
+
+    a{ color: var(--jade-700); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
 
     .wrap{
       width:100%;
-      max-width:var(--max-width);
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 16px 40px;
     }
 
-    header{
-      text-align:center;
-      margin-bottom:22px;
+    /* HERO */
+    .hero{
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow:hidden;
+      background:
+        linear-gradient(180deg, rgba(16,26,24,.62) 0%, rgba(16,26,24,.36) 45%, rgba(16,26,24,.55) 100%),
+        /* Add your own image in repo: /assets/xcaret-chapel.jpg */
+        url("assets/xcaret-chapel.jpg");
+      background-size: cover;
+      background-position: center;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.25);
+    }
+
+    /* If you don't add an image, this gradient still looks nice */
+    .hero.no-image{
+      background:
+        radial-gradient(900px 500px at 30% 10%, rgba(31,143,131,.38), transparent 60%),
+        radial-gradient(900px 500px at 80% 30%, rgba(198,162,91,.30), transparent 60%),
+        linear-gradient(180deg, rgba(16,26,24,.92), rgba(16,26,24,.75));
+    }
+
+    .hero-inner{
+      padding: 34px 22px 20px;
+      color: #fff;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.18);
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-size: .78rem;
     }
 
     .title{
       font-family: "Playfair Display", serif;
-      font-size: clamp(1.6rem, 2.6vw, 2.75rem);
-      font-weight:600;
-      color: var(--ink);
-      letter-spacing: -0.5px;
-      margin:0;
+      font-weight: 600;
+      font-size: clamp(1.8rem, 3.2vw, 3.1rem);
+      letter-spacing: -0.02em;
+      margin: 14px 0 8px;
     }
 
     .subtitle{
-      margin-top:6px;
-      font-weight:600;
-      color:var(--muted);
-      font-size:clamp(0.9rem, 1.2vw, 1.05rem);
+      margin:0;
+      color: rgba(255,255,255,.86);
+      font-weight: 400;
+      font-size: 1.02rem;
     }
 
-    .card{
-      background: var(--card-bg);
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(5,40,40,0.06);
-      padding:18px;
-      margin-bottom:14px;
-      border-left:6px solid rgba(46,196,182,0.12);
+    .hero-bottom{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content: space-between;
+      padding: 16px 22px 22px;
+      border-top: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,0), rgba(0,0,0,.12));
+    }
+
+    .must-attend{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+      color: rgba(255,255,255,.92);
+      font-weight: 600;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(6px);
+      font-size: .92rem;
+    }
+
+    .nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      justify-content:flex-end;
+    }
+
+    .nav a{
+      color: rgba(255,255,255,.92);
+      text-decoration:none;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.16);
+      font-weight: 600;
+      font-size: .92rem;
+    }
+    .nav a:hover{ background: rgba(255,255,255,.16); }
+
+    /* CONTENT SECTIONS */
+    .section{
+      margin-top: 16px;
+      background: var(--card);
+      border: 1px solid rgba(31,45,43,.08);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 14px 34px rgba(9,20,18,.06);
+      overflow:hidden;
+    }
+
+    .section-inner{
+      padding: 18px 18px 16px;
+    }
+
+    .section h2{
+      margin: 0 0 10px;
+      font-family: "Playfair Display", serif;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      font-size: 1.35rem;
+      color: var(--ink);
+      display:flex;
+      align-items:center;
+      gap:10px;
     }
 
     .intro{
-      margin: 12px 0 8px 0;
-      color: #074241;
+      margin: 0 0 10px;
+      color: var(--ink);
       font-size: 1rem;
     }
+    .intro + .intro{ margin-top: 10px; }
 
-    .highlight{
-      background: linear-gradient(90deg, rgba(255,255,255,0.98), rgba(255,250,245,0.98));
-      border-radius:10px;
-      padding:10px 14px;
-      border:1px solid rgba(3,40,40,0.03);
-      display:inline-block;
-      margin: 8px 0 0 0;
-      color: var(--ink);
-      font-weight:600;
-      box-shadow: 0 2px 8px rgba(3,40,40,0.03);
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:12px;
-      margin-top:14px;
-    }
-
-    @media(min-width:820px){
-      .grid{
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    h3{
-      margin:0 0 10px 0;
-      font-family: "Playfair Display", serif;
-      font-size:1.15rem;
-      color: var(--deep-turquoise);
-      display:flex;
-      gap:8px;
-      align-items:center;
-    }
-
-    .day-meta{
-      margin-bottom:8px;
-      color:var(--muted);
-      font-size:0.95rem;
-    }
-
-    .itinerary{
-      margin:0;
-      padding:0;
-      list-style:none;
-    }
-
-    .itinerary li{
-      padding:10px 8px;
-      border-radius:8px;
-      display:flex;
-      gap:16px;
-      align-items:flex-start;
-      line-height:1.5;
-    }
-
-    .time{
-      min-width:140px;
-      color:var(--turquoise);
-      font-weight:700;
-      font-size:0.95rem;
-      display:block;
-      flex-shrink:0;
-    }
-
-    .detail{
-      color:var(--ink);
-      font-size:0.95rem;
-      flex:1;
-    }
-
-    .muted{
-      color:var(--muted);
-      font-size:0.92rem;
-    }
-
-    .cta-row{
+    .callout{
+      margin-top: 14px;
+      background: linear-gradient(180deg, rgba(31,143,131,.08), rgba(31,143,131,.04));
+      border: 1px solid rgba(31,143,131,.16);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
       display:flex;
       gap:10px;
-      flex-wrap:wrap;
-      margin-top:10px;
+      align-items:flex-start;
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .callout span{ font-weight: 600; }
+    .callout small{
+      display:block;
+      color: var(--muted);
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    /* LINKS */
+    .links{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    @media(min-width:720px){
+      .links{ grid-template-columns: repeat(4, 1fr); }
     }
 
     .btn{
-      display:inline-block;
-      background:linear-gradient(180deg,var(--turquoise),var(--deep-turquoise));
-      color:white;
-      padding:10px 16px;
-      border-radius:10px;
-      text-decoration:none;
-      font-weight:600;
-      box-shadow: 0 6px 18px rgba(39,179,162,0.18);
-      border: none;
-      transition: transform .12s ease, box-shadow .12s ease;
-    }
-
-    .btn.secondary{
-      background: transparent;
-      border: 1px solid rgba(7,58,57,0.08);
-      color:var(--ink);
-      box-shadow:none;
-    }
-
-    .btn:active{ transform: translateY(1px); }
-    .small{
-      font-size:0.9rem;
-    }
-
-    footer{
-      margin-top:18px;
-      text-align:center;
-      color:var(--muted);
-      font-size:0.95rem;
-      padding-bottom:18px;
-    }
-
-    .top-strip{
       display:flex;
+      align-items:center;
       justify-content:center;
       gap:10px;
+      padding: 12px 12px;
+      border-radius: 999px;
+      font-weight: 600;
+      border: 1px solid rgba(31,45,43,.10);
+      background: rgba(255,255,255,.92);
+      color: var(--ink);
+      text-decoration:none;
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+      box-shadow: 0 10px 22px rgba(9,20,18,.06);
+      text-align:center;
+      min-height: 44px;
+    }
+    .btn.primary{
+      background: linear-gradient(180deg, var(--jade-600), var(--jade-700));
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 14px 28px rgba(31,143,131,.22);
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      text-decoration:none;
+    }
+    .btn:active{ transform: translateY(0); }
+
+    /* ITINERARY GRID */
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    @media(min-width:900px){
+      .grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .day{
+      background: var(--card-solid);
+      border: 1px solid rgba(31,45,43,.08);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 14px 34px rgba(9,20,18,.06);
+      overflow:hidden;
+    }
+
+    .day-head{
+      padding: 16px 16px 12px;
+      border-bottom: 1px solid rgba(31,45,43,.06);
+      background:
+        radial-gradient(700px 260px at 20% 0%, rgba(31,143,131,.10), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.92));
+    }
+
+    .day-title{
+      margin:0;
+      font-family: "Playfair Display", serif;
+      font-weight: 600;
+      font-size: 1.18rem;
+      display:flex;
       align-items:center;
-      margin-bottom:8px;
-      color:var(--muted);
-      font-size:0.95rem;
+      gap:10px;
     }
 
-    /* Print styles */
+    .day-sub{
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .timeline{
+      margin:0;
+      padding: 8px 14px 14px;
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap: 8px;
+    }
+
+    .row{
+      display:grid;
+      grid-template-columns: 140px 1fr;
+      gap: 12px;
+      padding: 10px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(31,45,43,.06);
+      background: rgba(251,250,247,.75);
+    }
+
+    .time{
+      font-weight: 700;
+      color: var(--jade-700);
+      font-size: .95rem;
+      letter-spacing: .01em;
+      white-space:nowrap;
+    }
+
+    .detail{
+      font-size: .97rem;
+      color: var(--ink);
+    }
+
+    .detail em{
+      font-style: normal;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .note{
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: .93rem;
+    }
+
+    .row.optional{
+      background: rgba(198,162,91,.08);
+      border: 1px solid rgba(198,162,91,.20);
+    }
+    .row.optional .time{ color: #8b6b2d; }
+
+    /* FOOTER */
+    footer{
+      text-align:center;
+      margin-top: 18px;
+      color: var(--muted);
+      padding: 18px 8px 8px;
+      font-size: .95rem;
+    }
+
+    /* PRINT */
     @media print{
-      body{
-        background: white;
-        color: black;
-        padding: 8mm;
-      }
-      .card{
-        box-shadow:none;
-        border-left: 4px solid #000;
-        background: transparent;
-        page-break-inside: avoid;
-      }
-      .btn, .cta-row{ display:none !important; }
-      header, footer{ color: #000; }
-      .title{ font-size: 20pt; }
-      .subtitle{ font-size: 10pt; }
-      a[href^="mailto:"]::after{ content: " (" attr(href) ")"; font-weight:normal; color: #333; }
+      body{ background:#fff; }
+      .hero{ box-shadow:none; border:1px solid #000; }
+      .nav, .links{ display:none !important; }
+      .section, .day{ box-shadow:none; }
+      a[href^="mailto:"]::after{ content: " (" attr(href) ")"; color:#444; font-weight:normal; }
+      .row{ break-inside: avoid; }
     }
-
-    /* small helper */
-    .note{ font-size:0.88rem; color:var(--muted); margin-top:6px; }
-    .emoji { font-size:1.05rem; margin-right:6px; }
-    .optional { font-style: italic; color: #6f7776; }
   </style>
 </head>
+
 <body>
   <div class="wrap">
 
-    <header>
-      <h1 class="title">Fabian &amp; Kendall’s Wedding Weekend</h1>
-      <div class="subtitle">Hotel Xcaret Mexico • Riviera Maya</div>
-    </header>
-
-    <div class="card">
-      <p class="intro">
-        We’re so excited to celebrate with you in Mexico! This itinerary includes what we’ll be doing each day. Join us for anything you’d like, and please feel free to make your own plans and reservations as well — whether that means relaxing at the resort, exploring the parks, or enjoying excursions. This is your vacation too!
-      </p>
-
-      <p class="intro">
-        For any activities or dinners that require reservations, please be sure to complete the reservation form and email it to Guest Services at
-        <a href="mailto:dxguestservice@hotelxcaret.com">dxguestservice@hotelxcaret.com</a>.
-      </p>
-
-      <div class="highlight">✨ The only scheduled events we hope everyone attends are: <strong>Friday: Welcome Party • Saturday: Wedding + Reception</strong></div>
-    </div>
-
-    <div class="card">
-      <h3>🔗 Links & Resources</h3>
-      <p class="muted">Large buttons below for quick access — replace the placeholders with your PDFs or forms.</p>
-
-      <div class="cta-row" role="navigation" aria-label="Quick Links">
-        <a class="btn" href="https://drive.google.com/file/d/1h5ixye5rqxJyfygHQlrHrEBW51uS2n-0/view?usp=sharing" target="_blank" rel="noopener noreferrer">📄 Itinerary PDF</a>
-        <a class="btn secondary" href="https://drive.google.com/file/d/1oCG33oFJfu82XoI8DT_nC8EVomUehXsM/view?usp=sharing" target="_blank" rel="noopener noreferrer">📝 Reservation Form</a>
-        <a class="btn" href="https://kendallandfabian.com/" target="_blank" rel="noopener noreferrer">💌 Wedding Details</a>
-        <a class="btn secondary" href="mailto:dxguestservice@hotelxcaret.com">📧 Guest Services Email</a>
+    <!-- If you don't have a background image yet, add class "no-image" below -->
+    <section class="hero no-image">
+      <div class="hero-inner">
+        <div class="kicker">Hotel Xcaret Mexico • Riviera Maya</div>
+        <h1 class="title">Fabian &amp; Kendall’s Wedding Weekend</h1>
+        <p class="subtitle">Your weekend guide — join us for anything, and enjoy your own plans too.</p>
       </div>
-    </div>
 
-    <main class="grid">
+      <div class="hero-bottom">
+        <div class="must-attend">
+          <div class="pill">✨ Must attend: <strong>Friday Welcome Party</strong></div>
+          <div class="pill">💍 <strong>Saturday Wedding + Reception</strong></div>
+        </div>
 
-      <article class="card" aria-labelledby="wed-wed">
-        <h3 id="wed-wed">🌞 Wednesday — Our Arrival Day </h3>
-        <ul class="itinerary">
-          <li><span class="time">7:30 AM</span><span class="detail"><em>Check-in</em></span></li>
-          <li><span class="time">9:00 AM – 2:00 PM</span><span class="detail"><em>Xenses</em></span></li>
-          <li><span class="time">2:15 PM</span><span class="detail"><em>Lunch at Las Playas</em></span></li>
-          <li><span class="time">4:00 PM</span><span class="detail"><em>Xcaret Park</em></span></li>
-          <li><span class="time">7:00 PM – 9:00 PM</span><span class="detail"><em>México Espectacular show</em></span></li>
-          <li><span class="time">10:00 PM</span><span class="detail"><em>Late Dinner at Las Sillas</em> (closes 11:00 PM)</span></li>
+        <nav class="nav" aria-label="Jump to day">
+          <a href="#wednesday">Wed</a>
+          <a href="#thursday">Thu</a>
+          <a href="#friday">Fri</a>
+          <a href="#saturday">Sat</a>
+          <a href="#sunday">Sun</a>
+          <a href="#monday">Mon</a>
+        </nav>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Intro">
+      <div class="section-inner">
+        <h2>🌿 Welcome</h2>
+        <p class="intro">
+          We’re so excited to celebrate with you in Mexico! This itinerary includes what we’ll be doing each day.
+          Join us for anything you’d like, and please feel free to make your own plans and reservations as well —
+          whether that means relaxing at the resort, exploring the parks, or enjoying excursions. This is your vacation too!
+        </p>
+
+        <p class="intro">
+          For any activities or dinners that require reservations, please be sure to complete the reservation form and email it to Guest Services at
+          <a href="mailto:dxguestservice@hotelxcaret.com">dxguestservice@hotelxcaret.com</a>.
+        </p>
+
+        <div class="callout" role="note">
+          <span>Heads up:</span>
+          <div>
+            The schedule below is flexible—please come and go as you please.
+            <small>We just can’t wait to celebrate with you Friday night + Saturday!</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Links">
+      <div class="section-inner">
+        <h2>🔗 Links &amp; Resources</h2>
+
+        <div class="links" role="navigation" aria-label="Quick links">
+          <a class="btn primary" href="https://drive.google.com/file/d/1h5ixye5rqxJyfygHQlrHrEBW51uS2n-0/view?usp=sharing" target="_blank" rel="noopener noreferrer">📄 Itinerary PDF</a>
+          <a class="btn" href="https://drive.google.com/file/d/1oCG33oFJfu82XoI8DT_nC8EVomUehXsM/view?usp=sharing" target="_blank" rel="noopener noreferrer">📝 Reservation Form</a>
+          <a class="btn primary" href="https://kendallandfabian.com/" target="_blank" rel="noopener noreferrer">💌 Wedding Details</a>
+          <a class="btn" href="mailto:dxguestservice@hotelxcaret.com">📧 Guest Services Email</a>
+        </div>
+      </div>
+    </section>
+
+    <main class="grid" aria-label="Itinerary">
+
+      <!-- Wednesday -->
+      <article class="day" id="wednesday" aria-labelledby="wed-title">
+        <header class="day-head">
+          <h3 class="day-title" id="wed-title">🌞 Wednesday — Our Arrival Day</h3>
+        </header>
+        <ul class="timeline">
+          <li class="row"><div class="time">7:30 AM</div><div class="detail"><em>Check-in</em></div></li>
+          <li class="row"><div class="time">9:00 AM – 2:00 PM</div><div class="detail"><em>Xenses</em></div></li>
+          <li class="row"><div class="time">2:15 PM</div><div class="detail"><em>Lunch at Las Playas</em></div></li>
+          <li class="row"><div class="time">4:00 PM</div><div class="detail"><em>Xcaret Park</em></div></li>
+          <li class="row"><div class="time">7:00 PM – 9:00 PM</div><div class="detail"><em>México Espectacular show</em></div></li>
+          <li class="row"><div class="time">10:00 PM</div><div class="detail"><em>Late Dinner at Las Sillas</em> <span class="note">(closes 11:00 PM)</span></div></li>
         </ul>
       </article>
 
-      <article class="card" aria-labelledby="thu-friends">
-        <h3 id="thu-friends">🌴 Thursday — Friends Arrive</h3>
-        <ul class="itinerary">
-          <li><span class="time">9:00 AM</span><span class="detail"><em>Breakfast at Arriba Baja</em></span></li>
-          <li><span class="time">10:40 AM</span><span class="detail"><em>Xplor Park</em> (4–5 hours)</span></li>
-          <li><span class="time">3:00 PM</span><span class="detail"><em>Lunch at El Mercado</em></span></li>
-          <li><span class="time">6:00 PM</span><span class="detail"><em>Xoximilco Floating Fiesta!</em> (meet at lobby)</span></li>
+      <!-- Thursday -->
+      <article class="day" id="thursday" aria-labelledby="thu-title">
+        <header class="day-head">
+          <h3 class="day-title" id="thu-title">🌴 Thursday — Friends Arrive</h3>
+        </header>
+        <ul class="timeline">
+          <li class="row"><div class="time">9:00 AM</div><div class="detail"><em>Breakfast at Arriba Baja</em></div></li>
+          <li class="row"><div class="time">10:40 AM</div><div class="detail"><em>Xplor Park</em> <span class="note">(4–5 hours)</span></div></li>
+          <li class="row"><div class="time">3:00 PM</div><div class="detail"><em>Lunch at El Mercado</em></div></li>
+          <li class="row"><div class="time">6:00 PM</div><div class="detail"><em>Xoximilco Floating Fiesta!</em> <span class="note">(meet at lobby)</span></div></li>
         </ul>
       </article>
 
-      <article class="card" aria-labelledby="fri-most">
-        <h3 id="fri-most">🍹 Friday — Most Guests Arrive</h3>
-        <ul class="itinerary">
-          <li><span class="time">8:00 AM</span><span class="detail"><em>Breakfast at Fuego</em></span></li>
-          <li><span class="time">Daytime</span><span class="detail">Pool / relax / enjoy the resort</span></li>
-          <li><span class="time">5:30 PM</span><span class="detail"><em>Welcome Party</em></span></li>
-          <li><span class="time">6:30 PM</span><span class="detail"><em>Rehearsal</em></span></li>
-          <li><span class="time">7:00 PM</span><span class="detail"><em>Lobby Bar</em></span></li>
-          <li><span class="time">8:00 PM</span><span class="detail"><em>Dinner at El Mercado</em> (no reservation needed — come and go as you please)</span></li>
+      <!-- Friday -->
+      <article class="day" id="friday" aria-labelledby="fri-title">
+        <header class="day-head">
+          <h3 class="day-title" id="fri-title">🍹 Friday — Most Guests Arrive</h3>
+        </header>
+        <ul class="timeline">
+          <li class="row"><div class="time">8:00 AM</div><div class="detail"><em>Breakfast at Fuego</em></div></li>
+          <li class="row"><div class="time">Daytime</div><div class="detail">Pool / relax / enjoy the resort</div></li>
 
-          <li><span class="time">Optional</span><span class="detail optional">✅ Highly Recommended: Xplor Fuego — Shuttles 7:00 PM – 10:30 PM, every 30 min</span></li>
+          <li class="row"><div class="time">5:30 PM</div><div class="detail"><em>Welcome Party</em></div></li>
+          <li class="row"><div class="time">6:30 PM</div><div class="detail"><em>Rehearsal</em></div></li>
+          <li class="row"><div class="time">7:00 PM</div><div class="detail"><em>Lobby Bar</em></div></li>
+          <li class="row"><div class="time">8:00 PM</div><div class="detail"><em>Dinner at El Mercado</em> <span class="note">(no reservation needed — come and go as you please)</span></div></li>
+
+          <li class="row optional">
+            <div class="time">Optional</div>
+            <div class="detail"><em>✅ Highly Recommended: Xplor Fuego</em> <span class="note">Shuttles 7:00 PM – 10:30 PM, every 30 min</span></div>
+          </li>
         </ul>
       </article>
 
-      <article class="card" aria-labelledby="sat-wed">
-        <h3 id="sat-wed">Saturday — Wedding Day 💍</h3>
-        <ul class="itinerary">
-          <li><span class="time">Morning</span><span class="detail">Guests enjoy breakfast, pool, spa, or park excursion</span></li>
-          <li><span class="time">4:00 PM</span><span class="detail"><em>All guests meet at the Main Lobby</em> (guests will be escorted to the chapel)</span></li>
-          <li><span class="time">4:30 PM</span><span class="detail"><em>Wedding Ceremony</em></span></li>
-          <li><span class="time">6:00 PM</span><span class="detail"><em>Cocktail Hour at Playón Viento</em></span></li>
-          <li><span class="time">7:00 PM</span><span class="detail"><em>Reception at Playón Viento</em></span></li>
-          <li><span class="time">11:00 PM</span><span class="detail"><em>After Party: Los Faroles or Xupes</em> 🎉</span></li>
+      <!-- Saturday -->
+      <article class="day" id="saturday" aria-labelledby="sat-title">
+        <header class="day-head">
+          <h3 class="day-title" id="sat-title">💍 Saturday — Wedding Day</h3>
+          <p class="day-sub">Morning is open — enjoy breakfast, pool, spa, or a park excursion.</p>
+        </header>
+        <ul class="timeline">
+          <li class="row"><div class="time">Morning</div><div class="detail">Guests enjoy breakfast, pool, spa, or park excursion</div></li>
+          <li class="row"><div class="time">4:00 PM</div><div class="detail"><em>All guests meet at the Main Lobby</em> <span class="note">(guests will be escorted to the chapel)</span></div></li>
+          <li class="row"><div class="time">4:30 PM</div><div class="detail"><em>Wedding Ceremony</em></div></li>
+          <li class="row"><div class="time">6:00 PM</div><div class="detail"><em>Cocktail Hour at Playón Viento</em></div></li>
+          <li class="row"><div class="time">7:00 PM</div><div class="detail"><em>Reception at Playón Viento</em></div></li>
+          <li class="row"><div class="time">11:00 PM</div><div class="detail"><em>After Party: Los Faroles or Xupes</em> 🎉</div></li>
         </ul>
       </article>
 
-      <article class="card" aria-labelledby="sun-brunch">
-        <h3 id="sun-brunch">🍽️ Sunday — Brunch + Relax</h3>
-        <ul class="itinerary">
-          <li><span class="time">11:00 AM</span><span class="detail"><em>Brunch at Las Cuevas (Kayak)</em></span></li>
-          <li style="padding-left:156px;"><span class="detail muted">Included only for guests staying in the Fuego building</span></li>
-          <li style="padding-left:156px;"><span class="detail muted">Otherwise $220 USD/person — Reservation required</span></li>
-          <li style="padding-left:156px;"><span class="detail muted">For Non Fuego guests El Mercado is a great option</span></li>
-          <li><span class="time">Daytime</span><span class="detail">Pool day / Isla Mujeres optional</span></li>
-          <li><span class="time">Parks</span><span class="detail">Only Parks open: Xcaret and Xel-Há</span></li>
-          <li><span class="time">Bride &amp; Groom</span><span class="detail">Relaxing at the resort 🌴</span></li>
+      <!-- Sunday -->
+      <article class="day" id="sunday" aria-labelledby="sun-title">
+        <header class="day-head">
+          <h3 class="day-title" id="sun-title">🍽️ Sunday — Brunch + Relax</h3>
+        </header>
+        <ul class="timeline">
+          <li class="row">
+            <div class="time">11:00 AM</div>
+            <div class="detail">
+              <em>Brunch at Las Cuevas (Kayak)</em>
+              <div class="note">Included only for guests staying in the Fuego building</div>
+              <div class="note">Otherwise $220 USD/person — Reservation required</div>
+              <div class="note">For non-Fuego guests, El Mercado is a great option</div>
+            </div>
+          </li>
+          <li class="row"><div class="time">Daytime</div><div class="detail">Pool day / Isla Mujeres optional</div></li>
+          <li class="row"><div class="time">Parks</div><div class="detail">Only Parks open: Xcaret and Xel-Há</div></li>
+          <li class="row"><div class="time">Bride &amp; Groom</div><div class="detail">Relaxing at the resort 🌴</div></li>
         </ul>
       </article>
 
-      <article class="card" aria-labelledby="mon-depart">
-        <h3 id="mon-depart">✈️ Monday — Departure Day</h3>
-        <ul class="itinerary">
-          <li><span class="time">Mostly</span><span class="detail">a travel day for guests</span></li>
-          <li><span class="time">Breakfast</span><span class="detail"><em>Breakfast at Las Playas</em> (no reservation required)</span></li>
+      <!-- Monday -->
+      <article class="day" id="monday" aria-labelledby="mon-title">
+        <header class="day-head">
+          <h3 class="day-title" id="mon-title">✈️ Monday — Departure Day</h3>
+        </header>
+        <ul class="timeline">
+          <li class="row"><div class="time">Mostly</div><div class="detail">a travel day for guests</div></li>
+          <li class="row"><div class="time">Breakfast</div><div class="detail"><em>Breakfast at Las Playas</em> <span class="note">(no reservation required — come and go)</span></div></li>
         </ul>
       </article>
 
