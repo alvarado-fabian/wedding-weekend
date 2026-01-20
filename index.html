@@ -775,10 +775,33 @@
     @media(max-width:640px){
       .wrap{ padding: 56px 12px 24px; }
       
+      /* Collapsible utility bar on mobile */
+      .utility.collapsed .utility-actions{
+        display: none;
+      }
+      .utility.expanded .utility-inner{
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .utility.expanded .utility-actions{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 8px;
+        gap: 6px;
+      }
+      .utility.expanded .u-btn{
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .utility-inner.mobile-header{
+        cursor: pointer;
+      }
+      
       .utility-inner{ padding: 8px 12px; }
       .utility-left{ min-width: auto; gap: 8px; }
       .utility-title strong{ font-size: .80rem; }
-      .utility-title span{ font-size: .72rem; }
+      .utility-title span{ font-size: .72rem; display: none; }
       .brand-mark{ width: 28px; height: 28px; }
       
       .utility-actions{ gap: 4px; }
@@ -792,7 +815,7 @@
       .must-attend{ gap: 6px; }
       .pill{ padding: 8px 10px; font-size: .85rem; }
       
-      .nav{ width: 100%; justify-content: flex-start; }
+      .nav{ width: 100%; justify-content: flex-start; flex-wrap: wrap; }
       .nav a{ padding: 8px 10px; font-size: .85rem; }
       
       .section-inner{ padding: 14px 14px 12px; }
@@ -800,10 +823,11 @@
       
       .grid{ grid-template-columns: 1fr; gap: 10px; }
       
-      .row{ grid-template-columns: auto 1fr; padding: 8px 8px; padding-right: 60px; gap: 8px; }
+      .row{ grid-template-columns: 1fr; padding: 8px; gap: 8px; position: relative; padding-right: 8px; }
       .time{ font-size: .88rem; }
       .detail{ font-size: .92rem; }
-      .cal-btn{ padding: 2px 3px; font-size: 0.75rem; right: 4px; }
+      .cal-btn{ position: static; padding: 6px 8px; font-size: 0.75rem; display: block; width: 100%; text-align: center; margin-top: 6px; background: rgba(31,143,131,.10); border: 1px solid rgba(31,143,131,.20); }
+      .cal-btn:hover{ background: rgba(31,143,131,.15); }
     }
   </style>
 </head>
@@ -1134,6 +1158,34 @@
 
   <script>
     (function(){
+      // ---------- Mobile utility bar collapse/expand ----------
+      const utility = document.querySelector('.utility');
+      const utilityInner = document.querySelector('.utility-inner');
+      const utilityActions = document.querySelector('.utility-actions');
+      let isCollapsed = false;
+      
+      function initMobileUtility(){
+        if (window.innerWidth <= 640){
+          isCollapsed = true;
+          utility.classList.add('collapsed');
+          utilityInner.classList.add('mobile-header');
+          utilityInner.addEventListener('click', (e) => {
+            if (e.target.closest('.u-btn')) return; // Don't toggle on button click
+            utility.classList.toggle('expanded');
+            utilityInner.setAttribute('aria-expanded', utility.classList.contains('expanded'));
+          });
+        } else {
+          utility.classList.remove('collapsed', 'expanded');
+          utilityInner.classList.remove('mobile-header');
+          isCollapsed = false;
+        }
+      }
+      
+      window.addEventListener('resize', () => {
+        const shouldBeCollapsed = window.innerWidth <= 640;
+        if (shouldBeCollapsed !== isCollapsed){\n          if (shouldBeCollapsed){\n            utility.classList.add('collapsed');\n            utility.classList.remove('expanded');\n            utilityInner.classList.add('mobile-header');\n            isCollapsed = true;\n          } else {\n            utility.classList.remove('collapsed', 'expanded');\n            utilityInner.classList.remove('mobile-header');\n            isCollapsed = false;\n          }\n        }\n      });\n      
+      initMobileUtility();
+      
       // ---------- Filters ----------
       const chips = Array.from(document.querySelectorAll('.chip[data-filter]'));
       const rows = Array.from(document.querySelectorAll('.row[data-tags]'));
