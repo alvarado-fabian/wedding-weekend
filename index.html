@@ -10,7 +10,6 @@
   <meta property="og:title" content="Fabian & Kendall’s Wedding Weekend — Hotel Xcaret Mexico" />
   <meta property="og:description" content="Your weekend guide — itinerary, links, reservations, and key events." />
   <meta property="og:type" content="website" />
-  <!-- Update these if you have a real preview image -->
   <meta property="og:image" content="assets/xcaret-chapel.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#167a70" />
@@ -44,6 +43,8 @@
       --max: 1040px;
 
       --focus: 0 0 0 3px rgba(31,143,131,.25), 0 0 0 1px rgba(31,143,131,.45);
+
+      --utility-h: 64px;
     }
 
     *{ box-sizing:border-box; }
@@ -97,10 +98,10 @@
       width:100%;
       max-width: var(--max);
       margin: 0 auto;
-      padding: 72px 16px 40px; /* top padding accounts for sticky utility bar */
+      padding: calc(var(--utility-h) + 14px) 16px 40px;
     }
 
-    /* Sticky utility bar (Guest Services feel) */
+    /* Sticky utility bar */
     .utility{
       position: fixed;
       top: 0;
@@ -182,6 +183,10 @@
     }
     .u-btn:hover{ text-decoration:none; filter: brightness(1.01); }
 
+    /* Mobile drawer */
+    .utility-toggle{ display:none; }
+    .utility-drawer{ display:none; }
+
     /* HERO */
     .hero{
       position: relative;
@@ -194,12 +199,6 @@
       background-position: center;
       box-shadow: var(--shadow);
       border: 1px solid rgba(255,255,255,.25);
-    }
-    .hero.no-image{
-      background:
-        radial-gradient(900px 500px at 30% 10%, rgba(31,143,131,.38), transparent 60%),
-        radial-gradient(900px 500px at 80% 30%, rgba(198,162,91,.30), transparent 60%),
-        linear-gradient(180deg, rgba(16,26,24,.92), rgba(16,26,24,.75));
     }
 
     .hero-inner{
@@ -342,152 +341,6 @@
       margin-top: 2px;
     }
 
-    /* At-a-glance */
-    .glance{
-      margin-top: 16px;
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-    @media(min-width:860px){
-      .glance{ grid-template-columns: 1.2fr .8fr; }
-    }
-    .glance-card{
-      background: var(--card-solid);
-      border: 1px solid rgba(31,45,43,.08);
-      border-radius: var(--radius-lg);
-      box-shadow: 0 14px 34px rgba(9,20,18,.06);
-      overflow:hidden;
-    }
-    .glance-inner{
-      padding: 16px;
-    }
-    .glance-title{
-      margin: 0 0 8px;
-      font-family: "Playfair Display", serif;
-      font-weight: 600;
-      font-size: 1.18rem;
-      letter-spacing: -0.01em;
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .glance-grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 10px;
-    }
-    @media(min-width:640px){
-      .glance-grid{ grid-template-columns: repeat(2, 1fr); }
-    }
-    .mini{
-      border: 1px solid rgba(31,45,43,.08);
-      background: rgba(251,250,247,.75);
-      border-radius: 14px;
-      padding: 12px;
-    }
-    .mini strong{
-      display:block;
-      font-size: .88rem;
-      letter-spacing: .02em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 4px;
-    }
-    .mini div{
-      font-weight: 700;
-      color: var(--ink);
-    }
-
-    /* Quick actions */
-    .quick-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top: 10px;
-    }
-    .qa-btn{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(31,45,43,.10);
-      background: rgba(255,255,255,.80);
-      font-weight: 800;
-      font-size: .9rem;
-      color: var(--ink);
-      cursor:pointer;
-    }
-    .qa-btn.primary{
-      background: linear-gradient(180deg, rgba(31,143,131,.16), rgba(31,143,131,.08));
-      border-color: rgba(31,143,131,.18);
-    }
-    .qa-btn:hover{ filter: brightness(1.01); }
-
-    /* LINKS */
-    .links{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 10px;
-    }
-    @media(min-width:720px){
-      .links{ grid-template-columns: repeat(4, 1fr); }
-    }
-
-    .btn{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding: 12px 12px;
-      border-radius: 999px;
-      font-weight: 800;
-      border: 1px solid rgba(255,255,255,.18);
-      background: linear-gradient(180deg, var(--jade-600), var(--jade-700));
-      color: #fff;
-      text-decoration:none;
-      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
-      box-shadow: 0 14px 28px rgba(31,143,131,.22);
-      text-align:center;
-      min-height: 44px;
-    }
-    .btn:hover{
-      transform: translateY(-1px);
-      text-decoration:none;
-    }
-    .btn:active{ transform: translateY(0); }
-
-    /* NEW: Link grouping labels (no content change, just structure) */
-    .link-groups{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      margin-top: 12px;
-    }
-    @media(min-width:900px){
-      .link-groups{ grid-template-columns: 1fr 1fr 1fr; }
-    }
-    .group{
-      background: rgba(255,255,255,.66);
-      border: 1px solid rgba(31,45,43,.08);
-      border-radius: var(--radius-lg);
-      padding: 14px;
-    }
-    .group h3{
-      margin: 0 0 10px;
-      font-size: .92rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .group .links{
-      margin-top: 0;
-      grid-template-columns: 1fr;
-    }
-
     /* Filters */
     .filters{
       margin-top: 10px;
@@ -518,6 +371,56 @@
       color: var(--muted);
     }
 
+    /* LINKS */
+    .links{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 12px;
+      border-radius: 999px;
+      font-weight: 800;
+      border: 1px solid rgba(255,255,255,.18);
+      background: linear-gradient(180deg, var(--jade-600), var(--jade-700));
+      color: #fff;
+      text-decoration:none;
+      transition: transform .12s ease;
+      box-shadow: 0 14px 28px rgba(31,143,131,.22);
+      text-align:center;
+      min-height: 44px;
+    }
+    .btn:hover{ transform: translateY(-1px); text-decoration:none; }
+
+    .link-groups{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 12px;
+    }
+    @media(min-width:900px){
+      .link-groups{ grid-template-columns: 1fr 1fr 1fr; }
+    }
+    .group{
+      background: rgba(255,255,255,.66);
+      border: 1px solid rgba(31,45,43,.08);
+      border-radius: var(--radius-lg);
+      padding: 14px;
+    }
+    .group h3{
+      margin: 0 0 10px;
+      font-size: .92rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .group .links{ margin-top: 0; }
+
     /* ITINERARY GRID */
     .grid{
       display:grid;
@@ -537,12 +440,7 @@
       box-shadow: 0 14px 34px rgba(9,20,18,.06);
       overflow:hidden;
     }
-    details.day{ padding:0; }
-    details.day > summary{
-      list-style:none;
-      cursor:pointer;
-      user-select:none;
-    }
+    details.day > summary{ list-style:none; cursor:pointer; user-select:none; }
     details.day > summary::-webkit-details-marker{ display:none; }
 
     .day-head{
@@ -566,7 +464,6 @@
       align-items:center;
       gap:10px;
     }
-
     .day-sub{
       margin: 6px 0 0;
       color: var(--muted);
@@ -610,33 +507,38 @@
       grid-template-columns: 140px 1fr;
       gap: 12px;
       padding: 10px 10px;
-      padding-right: 120px;
+      padding-right: 56px; /* ✅ NEW: reserve space for the + button */
       border-radius: 12px;
       border: 1px solid rgba(31,45,43,.06);
       background: rgba(251,250,247,.75);
       position: relative;
     }
 
+    /* tiny + button */
     .cal-btn{
       position: absolute;
-      right: 8px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: transparent;
-      border: none;
-      padding: 3px 4px;
-      border-radius: 6px;
-      font-size: 0.85rem;
+      right: 10px;
+      top: 10px;
+      width: 34px;
+      height: 34px;
+      display:grid;
+      place-items:center;
+      border-radius: 999px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(31,45,43,.10);
+      font-size: 1.05rem;
+      font-weight: 900;
+      line-height: 1;
       cursor: pointer;
-      opacity: 0.6;
-      transition: all 0.2s ease;
+      opacity: .9;
+      transition: background .15s ease, opacity .15s ease, transform .15s ease;
     }
-
     .cal-btn:hover{
       opacity: 1;
-      background: rgba(31,143,131,.15);
-      transform: scale(1.1);
+      background: rgba(31,143,131,.12);
+      transform: translateY(-1px);
     }
+    .cal-btn:active{ transform: translateY(0); }
 
     .time{
       font-weight: 800;
@@ -644,23 +546,21 @@
       font-size: .95rem;
       letter-spacing: .01em;
       white-space:nowrap;
-      display: flex;
+      display:flex;
       flex-direction: column;
       gap: 4px;
-      align-items: flex-start;
+      align-items:flex-start;
     }
 
     .detail{
       font-size: .97rem;
       color: var(--ink);
     }
-
     .detail em{
       font-style: normal;
       font-weight: 800;
       color: var(--ink);
     }
-
     .note{
       margin-top: 6px;
       color: var(--muted);
@@ -673,7 +573,7 @@
     }
     .row.optional .time{ color: #8b6b2d; }
 
-    /* Tags (experience chips) */
+    /* Tags */
     .tags{
       display:flex;
       flex-wrap:wrap;
@@ -699,39 +599,6 @@
     .tag.optional{ border-color: rgba(198,162,91,.26); color:#7a5c23; background: rgba(198,162,91,.12); }
     .tag.meet{ border-color: rgba(31,143,131,.18); color: var(--jade-700); background: rgba(31,143,131,.08); }
 
-    /* Next up widget */
-    .nextup{
-      margin-top: 10px;
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(31,45,43,.10);
-      background: rgba(255,255,255,.78);
-      overflow:hidden;
-    }
-    .nextup-inner{
-      padding: 14px 14px;
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      justify-content:space-between;
-      flex-wrap:wrap;
-    }
-    .nextup h3{
-      margin:0 0 6px;
-      font-size: .92rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .nextup p{ margin:0; font-weight: 800; }
-    .nextup small{ color: var(--muted); font-weight: 600; display:block; margin-top: 4px; }
-    .nextup .right{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      align-items:center;
-    }
-
     /* Footer */
     footer{
       text-align:center;
@@ -740,7 +607,6 @@
       padding: 18px 8px 8px;
       font-size: .95rem;
     }
-
     .help{
       margin-top: 14px;
       padding: 14px;
@@ -751,83 +617,99 @@
     .help strong{ display:block; margin-bottom: 4px; }
     .help a{ font-weight: 800; }
 
-    /* PRINT */
-    @media print{
-      .utility{ display:none !important; }
-      .wrap{ padding-top: 20px; }
-      body{ background:#fff; }
-      .hero{ box-shadow:none; border:1px solid #000; }
-      .links, .filters, .nextup{ display:none !important; }
-      .section, details.day{ box-shadow:none; }
-      a[href^="mailto:"]::after{ content: " (" attr(href) ")"; color:#444; font-weight:normal; }
-      .row{ break-inside: avoid; }
-      details.day{ border:1px solid #000; }
-      details.day > summary{ border-bottom:1px solid #000; }
-    }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      html{ scroll-behavior:auto; }
-      .btn, .chev span{ transition:none !important; }
-    }
-
     /* Mobile optimizations */
     @media(max-width:640px){
-      .wrap{ padding: 56px 12px 24px; }
-      
-      /* Collapsible utility bar on mobile */
-      .utility.collapsed .utility-actions{
-        display: none;
-      }
-      .utility.expanded .utility-inner{
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .utility.expanded .utility-actions{
-        display: flex;
-        flex-direction: column;
+      .wrap{ padding: calc(var(--utility-h) + 10px) 12px 24px; }
+
+      .utility-inner{ padding: 8px 12px; align-items: stretch; }
+      .utility-actions{ display:none; }
+
+      .utility-left{
+        min-width: auto;
         width: 100%;
-        margin-top: 8px;
-        gap: 6px;
+        justify-content: space-between;
+        gap: 10px;
       }
-      .utility.expanded .u-btn{
-        width: 100%;
-        justify-content: flex-start;
+
+      .utility-title strong{ font-size: .86rem; }
+      .utility-title span{ font-size: .74rem; }
+      .brand-mark{ width: 28px; height: 28px; border-radius: 10px; }
+
+      .utility-toggle{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        padding: 10px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(31,45,43,.10);
+        background: rgba(255,255,255,.76);
+        font-weight: 900;
+        font-size: .88rem;
+        color: var(--ink);
+        cursor:pointer;
+        white-space:nowrap;
       }
-      .utility-inner.mobile-header{
-        cursor: pointer;
+      .utility-toggle .caret{
+        width: 10px;
+        height: 10px;
+        border-right: 2px solid rgba(31,45,43,.55);
+        border-bottom: 2px solid rgba(31,45,43,.55);
+        transform: rotate(45deg);
+        transition: transform .14s ease;
       }
-      
-      .utility-inner{ padding: 8px 12px; }
-      .utility-left{ min-width: auto; gap: 8px; }
-      .utility-title strong{ font-size: .80rem; }
-      .utility-title span{ font-size: .72rem; display: none; }
-      .brand-mark{ width: 28px; height: 28px; }
-      
-      .utility-actions{ gap: 4px; }
-      .u-btn{ padding: 8px 10px; font-size: .80rem; }
-      
+      .utility.is-open .utility-toggle .caret{ transform: rotate(225deg); }
+
+      .utility-drawer{
+        display:none;
+        padding: 10px 12px 12px;
+        border-top: 1px solid rgba(31,45,43,.10);
+      }
+      .utility.is-open .utility-drawer{ display:block; }
+
+      .utility-drawer .drawer-actions{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap:8px;
+      }
+      .utility-drawer .u-btn{
+        width:100%;
+        padding: 10px 10px;
+        font-size: .86rem;
+        min-height: 42px;
+      }
+
       .hero-inner{ padding: 20px 14px 12px; }
-      .title{ font-size: clamp(1.4rem, 2.5vw, 2rem); margin: 8px 0 6px; }
+      .title{ font-size: 1.65rem; margin: 10px 0 6px; }
       .subtitle{ font-size: .92rem; }
-      
-      .hero-bottom{ padding: 12px 14px 14px; flex-direction: column; gap: 12px; }
-      .must-attend{ gap: 6px; }
+
+      .hero-bottom{
+        padding: 12px 14px 14px;
+        flex-direction: column;
+        align-items:flex-start;
+        gap: 12px;
+      }
       .pill{ padding: 8px 10px; font-size: .85rem; }
-      
-      .nav{ width: 100%; justify-content: flex-start; flex-wrap: wrap; }
+      .nav{ width: 100%; justify-content: flex-start; }
       .nav a{ padding: 8px 10px; font-size: .85rem; }
-      
-      .section-inner{ padding: 14px 14px 12px; }
-      .section h2{ font-size: 1.1rem; margin-bottom: 8px; }
-      
-      .grid{ grid-template-columns: 1fr; gap: 10px; }
-      
-      .row{ grid-template-columns: 1fr; padding: 8px; gap: 8px; position: relative; padding-right: 8px; }
-      .time{ font-size: .88rem; }
-      .detail{ font-size: .92rem; }
-      .cal-btn{ position: static; padding: 6px 8px; font-size: 0.75rem; display: block; width: 100%; text-align: center; margin-top: 6px; background: rgba(31,143,131,.10); border: 1px solid rgba(31,143,131,.20); }
-      .cal-btn:hover{ background: rgba(31,143,131,.15); }
+
+      .row{
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+          "time cal"
+          "detail cal";
+        column-gap: 10px;
+        row-gap: 6px;
+        align-items: start;
+        padding-right: 10px; /* reset desktop reserve */
+      }
+      .row .time{ grid-area: time; white-space: normal; }
+      .row .detail{ grid-area: detail; }
+      .cal-btn{
+        position: static;
+        grid-area: cal;
+        width: 36px;
+        height: 36px;
+      }
     }
   </style>
 </head>
@@ -836,17 +718,34 @@
   <a class="skip" href="#main">Skip to itinerary</a>
 
   <!-- Sticky utility bar -->
-  <header class="utility" role="banner" aria-label="Guest Services utility bar">
+  <header class="utility" role="banner" aria-label="Guest Services utility bar" id="utility">
     <div class="utility-inner">
       <div class="utility-left">
-        <div class="brand-mark" aria-hidden="true"></div>
-        <div class="utility-title">
-          <strong>Guest Services</strong>
-          <span>Hotel Xcaret Mexico • Riviera Maya</span>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div class="brand-mark" aria-hidden="true"></div>
+          <div class="utility-title">
+            <strong>Guest Services</strong>
+            <span>Hotel Xcaret Mexico • Riviera Maya</span>
+          </div>
         </div>
+
+        <button class="utility-toggle" type="button" id="utilityToggle" aria-expanded="false" aria-controls="utilityDrawer">
+          Menu <span class="caret" aria-hidden="true"></span>
+        </button>
       </div>
 
       <div class="utility-actions" aria-label="Quick actions">
+        <a class="u-btn" href="mailto:dxguestservice@hotelxcaret.com">✉️ Email</a>
+        <a class="u-btn" href="https://chat.whatsapp.com/JJ0D7D8qJ9U3N2RvWMiJin" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+        <a class="u-btn" href="https://drive.google.com/file/d/1oCG33oFJfu82XoI8DT_nC8EVomUehXsM/view?usp=sharing" target="_blank" rel="noopener noreferrer">📝 Reservations</a>
+        <a class="u-btn" href="https://drive.google.com/file/d/1xNGMCaLoUavbsrdopF5Npiu8Q1oxtWT6/view?usp=sharing" target="_blank" rel="noopener noreferrer">🗺️ Map</a>
+        <a class="u-btn primary" href="#main">📅 Itinerary</a>
+      </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="utility-drawer" id="utilityDrawer" aria-label="Guest Services menu">
+      <div class="drawer-actions">
         <a class="u-btn" href="mailto:dxguestservice@hotelxcaret.com">✉️ Email</a>
         <a class="u-btn" href="https://chat.whatsapp.com/JJ0D7D8qJ9U3N2RvWMiJin" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
         <a class="u-btn" href="https://drive.google.com/file/d/1oCG33oFJfu82XoI8DT_nC8EVomUehXsM/view?usp=sharing" target="_blank" rel="noopener noreferrer">📝 Reservations</a>
@@ -858,7 +757,6 @@
 
   <div class="wrap">
 
-    <!-- If you don't have a background image yet, add class "no-image" below -->
     <section class="hero" aria-label="Hero">
       <div class="hero-inner">
         <div class="kicker">Hotel Xcaret Mexico • Riviera Maya</div>
@@ -910,37 +808,6 @@
       </div>
     </section>
 
-    <section class="section" aria-label="At a glance">
-      <div class="section-inner">
-        <h2>🌿 At a glance</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 12px;">
-          <div style="padding: 12px; background: rgba(31,143,131,.08); border-radius: 8px;">
-            <strong>Must attend</strong>
-            <div style="margin-top: 6px; font-size: 0.95rem;">Friday Welcome Party + Saturday Wedding &amp; Reception</div>
-          </div>
-          <div style="padding: 12px; background: rgba(31,143,131,.08); border-radius: 8px;">
-            <strong>Reservations</strong>
-            <div style="margin-top: 6px; font-size: 0.95rem;">Complete form + email Guest Services</div>
-          </div>
-          <div style="padding: 12px; background: rgba(31,143,131,.08); border-radius: 8px;">
-            <strong>Flexibility</strong>
-            <div style="margin-top: 6px; font-size: 0.95rem;">Join us for anything — come and go as you please</div>
-          </div>
-        </div>
-
-        <div style="margin-top: 24px; padding: 14px; background: rgba(198,162,91,.08); border-radius: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
-          <div>
-            <h3 style="margin: 0 0 4px; font-size: 1rem;">What's next</h3>
-            <p id="nextup-title" style="margin: 0; font-weight: 600; font-size: 1.1rem;">Loading…</p>
-            <small id="nextup-sub" style="color: var(--muted);">Based on your device time. You can still jump to any day below.</small>
-          </div>
-          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <button class="qa-btn" type="button" id="expand-today" style="padding: 10px 12px; border-radius: 6px; background: rgba(31,143,131,.15); border: 1px solid rgba(31,143,131,.3); cursor: pointer; font-weight: 600; font-size: 0.92rem;">Open today's card</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="section" aria-label="Guest Services & Links">
       <div class="section-inner">
         <h2>🔗 Guest Services &amp; Resources</h2>
@@ -953,7 +820,6 @@
           <button class="chip" type="button" data-filter="meet" aria-pressed="false">📍 Meet-ups</button>
         </div>
 
-        <!-- Same links, now grouped for easier scanning -->
         <div class="link-groups" role="navigation" aria-label="Quick links">
           <div class="group">
             <h3>Planning</h3>
@@ -1001,12 +867,12 @@
           </header>
         </summary>
         <ul class="timeline">
-          <li class="row" data-tags="meet"><div class="time">7:30 AM<div class="tags"><span class="tag meet">Meet-up</span></div></div><div class="detail"><em>Check-in</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="park"><div class="time">9:00 AM – 2:00 PM<div class="tags"><span class="tag park">Park</span></div></div><div class="detail"><em>Xenses</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="dining"><div class="time">2:15 PM<div class="tags"><span class="tag dining">Dining</span></div></div><div class="detail"><em>Lunch at Las Playas</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="park"><div class="time">4:00 PM<div class="tags"><span class="tag park">Park</span></div></div><div class="detail"><em>Xcaret Park</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="park"><div class="time">7:00 PM – 9:00 PM<div class="tags"><span class="tag park">Park</span></div></div><div class="detail"><em>México Espectacular show</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="dining"><div class="time">10:00 PM<div class="tags"><span class="tag dining">Dining</span></div></div><div class="detail"><em>Late Dinner at Las Sillas</em> <span class="note">(closes 11:00 PM)</span></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="meet"><div class="time">7:30 AM<div class="tags"><span class="tag meet">Meet-up</span></div></div><div class="detail"><em>Check-in</em></div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
+          <li class="row" data-tags="park"><div class="time">9:00 AM – 2:00 PM<div class="tags"><span class="tag park">Park</span></div></div><div class="detail"><em>Xenses</em></div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
+          <li class="row" data-tags="dining"><div class="time">2:15 PM<div class="tags"><span class="tag dining">Dining</span></div></div><div class="detail"><em>Lunch at Las Playas</em></div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
+          <li class="row" data-tags="park"><div class="time">4:00 PM<div class="tags"><span class="tag park">Park</span></div></div><div class="detail"><em>Xcaret Park</em></div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
+          <li class="row" data-tags="park"><div class="time">7:00 PM – 9:00 PM<div class="tags"><span class="tag park">Park</span></div></div><div class="detail"><em>México Espectacular show</em></div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
+          <li class="row" data-tags="dining"><div class="time">10:00 PM<div class="tags"><span class="tag dining">Dining</span></div></div><div class="detail"><em>Late Dinner at Las Sillas</em> <span class="note">(closes 11:00 PM)</span></div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
         </ul>
       </details>
 
@@ -1021,10 +887,10 @@
           </header>
         </summary>
         <ul class="timeline">
-          <li class="row" data-tags="dining"><div class="time">9:00 AM<div class="tags"><span class="tag dining">Dining</span></div></div><div class="detail"><em>Breakfast at Arriba Baja</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="park"><div class="time">10:40 AM<div class="tags"><span class="tag park">Park</span></div></div><div class="detail"><em>Xplor Park</em> <span class="note">(4–5 hours)</span></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="dining"><div class="time">3:00 PM<div class="tags"><span class="tag dining">Dining</span></div></div><div class="detail"><em>Lunch at El Mercado</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="park,meet"><div class="time">6:00 PM<div class="tags"><span class="tag park">Park</span><span class="tag meet">Meet-up</span></div></div><div class="detail"><em>Xoximilco Floating Fiesta!</em> <span class="note">(meet at lobby)</span></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="dining"><div class="time">9:00 AM<div class="tags"><span class="tag dining">Dining</span></div></div><div class="detail"><em>Breakfast at Arriba Baja</em></div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
+          <li class="row" data-tags="park"><div class="time">10:40 AM<div class="tags"><span class="tag park">Park</span></div></div><div class="detail"><em>Xplor Park</em> <span class="note">(4–5 hours)</span></div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
+          <li class="row" data-tags="dining"><div class="time">3:00 PM<div class="tags"><span class="tag dining">Dining</span></div></div><div class="detail"><em>Lunch at El Mercado</em></div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
+          <li class="row" data-tags="park,meet"><div class="time">6:00 PM<div class="tags"><span class="tag park">Park</span><span class="tag meet">Meet-up</span></div></div><div class="detail"><em>Xoximilco Floating Fiesta!</em> <span class="note">(meet at lobby)</span></div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
         </ul>
       </details>
 
@@ -1039,13 +905,13 @@
           </header>
         </summary>
         <ul class="timeline">
-          <li class="row" data-tags="dining"><div class="time">8:00 AM<div class="tags"><span class="tag dining">Dining</span></div></div><div class="detail"><em>Breakfast at Fuego</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags=""><div class="time">Daytime</div><div class="detail">Pool / relax / enjoy the resort</div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="dining"><div class="time">8:00 AM<div class="tags"><span class="tag dining">Dining</span></div></div><div class="detail"><em>Breakfast at Fuego</em></div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
+          <li class="row" data-tags=""><div class="time">Daytime</div><div class="detail">Pool / relax / enjoy the resort</div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
 
-          <li class="row" data-tags="wedding"><div class="time">5:30 PM<div class="tags"><span class="tag wedding">Wedding Event</span></div></div><div class="detail"><em>Welcome Party</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="wedding"><div class="time">6:30 PM<div class="tags"><span class="tag wedding">Wedding Event</span></div></div><div class="detail"><em>Rehearsal</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="meet"><div class="time">7:00 PM<div class="tags"><span class="tag meet">Meet-up</span></div></div><div class="detail"><em>Lobby Bar</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="dining"><div class="time">8:00 PM<div class="tags"><span class="tag dining">Dining</span></div></div><div class="detail"><em>Dinner at El Mercado</em> <span class="note">(no reservation needed — come and go as you please)</span></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="wedding"><div class="time">5:30 PM<div class="tags"><span class="tag wedding">Wedding Event</span></div></div><div class="detail"><em>Welcome Party</em></div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
+          <li class="row" data-tags="wedding"><div class="time">6:30 PM<div class="tags"><span class="tag wedding">Wedding Event</span></div></div><div class="detail"><em>Rehearsal</em></div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
+          <li class="row" data-tags="meet"><div class="time">7:00 PM<div class="tags"><span class="tag meet">Meet-up</span></div></div><div class="detail"><em>Lobby Bar</em></div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
+          <li class="row" data-tags="dining"><div class="time">8:00 PM<div class="tags"><span class="tag dining">Dining</span></div></div><div class="detail"><em>Dinner at El Mercado</em> <span class="note">(no reservation needed — come and go as you please)</span></div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
 
           <li class="row optional" data-tags="park,optional">
             <div class="time">Optional</div>
@@ -1072,22 +938,21 @@
           <li class="row" data-tags="">
             <div class="time">Morning</div>
             <div class="detail">Guests enjoy breakfast, pool, spa, or park excursion</div>
-            <button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button>
+            <button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button>
           </li>
 
-          <!-- Same content, simply highlighted for scanability -->
           <li class="row" data-tags="meet,wedding">
             <div class="time">4:00 PM<div class="tags"><span class="tag meet">Meet-up</span><span class="tag wedding">Wedding Event</span></div></div>
             <div class="detail">
               <em>All guests meet at the Main Lobby</em> <span class="note">(guests will be escorted to the chapel)</span>
             </div>
-            <button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button>
+            <button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button>
           </li>
 
-          <li class="row" data-tags="wedding"><div class="time">4:30 PM<div class="tags"><span class="tag wedding">Wedding Event</span></div></div><div class="detail"><em>Wedding Ceremony</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="wedding"><div class="time">6:00 PM<div class="tags"><span class="tag wedding">Wedding Event</span></div></div><div class="detail"><em>Cocktail Hour at Playón Viento</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="wedding"><div class="time">7:00 PM<div class="tags"><span class="tag wedding">Wedding Event</span></div></div><div class="detail"><em>Reception at Playón Viento</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="wedding,optional"><div class="time">11:00 PM<div class="tags"><span class="tag wedding">Wedding Event</span><span class="tag optional">Optional</span></div></div><div class="detail"><em>After Party: Los Faroles or Xupes</em> 🎉</div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="wedding"><div class="time">4:30 PM<div class="tags"><span class="tag wedding">Wedding Event</span></div></div><div class="detail"><em>Wedding Ceremony</em></div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
+          <li class="row" data-tags="wedding"><div class="time">6:00 PM<div class="tags"><span class="tag wedding">Wedding Event</span></div></div><div class="detail"><em>Cocktail Hour at Playón Viento</em></div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
+          <li class="row" data-tags="wedding"><div class="time">7:00 PM<div class="tags"><span class="tag wedding">Wedding Event</span></div></div><div class="detail"><em>Reception at Playón Viento</em></div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
+          <li class="row" data-tags="wedding,optional"><div class="time">11:00 PM<div class="tags"><span class="tag wedding">Wedding Event</span><span class="tag optional">Optional</span></div></div><div class="detail"><em>After Party: Los Faroles or Xupes</em> 🎉</div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
         </ul>
       </details>
 
@@ -1112,11 +977,11 @@
               <div class="note">For non-Fuego guests, El Mercado is a great option</div>
               <div class="tags"><span class="tag dining">Dining</span><span class="tag wedding">Wedding Event</span></div>
             </div>
-            <button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button>
+            <button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button>
           </li>
-          <li class="row" data-tags="optional"><div class="time">Daytime<div class="tags"><span class="tag optional">Optional</span></div></div><div class="detail">Pool day / Isla Mujeres optional</div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="park"><div class="time">Parks<div class="tags"><span class="tag park">Park</span></div></div><div class="detail">Only Parks open: Xcaret Park and Xel-Há</div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags=""><div class="time">Bride &amp; Groom</div><div class="detail">Relaxing at the resort 🌴</div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="optional"><div class="time">Daytime<div class="tags"><span class="tag optional">Optional</span></div></div><div class="detail">Pool day / Isla Mujeres optional</div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
+          <li class="row" data-tags="park"><div class="time">Parks<div class="tags"><span class="tag park">Park</span></div></div><div class="detail">Only Parks open: Xcaret Park and Xel-Há</div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
+          <li class="row" data-tags=""><div class="time">Bride &amp; Groom</div><div class="detail">Relaxing at the resort 🌴</div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
         </ul>
       </details>
 
@@ -1131,8 +996,8 @@
           </header>
         </summary>
         <ul class="timeline">
-          <li class="row" data-tags=""><div class="time">Mostly</div><div class="detail">a travel day for guests</div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="dining"><div class="time">Breakfast<div class="tags"><span class="tag dining">Dining</span></div></div><div class="detail"><em>Breakfast at Las Playas</em> <span class="note">(no reservation required — come and go)</span></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags=""><div class="time">Mostly</div><div class="detail">a travel day for guests</div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
+          <li class="row" data-tags="dining"><div class="time">Breakfast<div class="tags"><span class="tag dining">Dining</span></div></div><div class="detail"><em>Breakfast at Las Playas</em> <span class="note">(no reservation required — come and go)</span></div><button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button></li>
         </ul>
       </details>
 
@@ -1158,38 +1023,70 @@
 
   <script>
     (function(){
-      // ---------- Mobile utility bar collapse/expand ----------
-      const utility = document.querySelector('.utility');
-      const utilityInner = document.querySelector('.utility-inner');
-      const utilityActions = document.querySelector('.utility-actions');
-      let isCollapsed = false;
-      
-      function initMobileUtility(){
-        if (window.innerWidth <= 640){
-          isCollapsed = true;
-          utility.classList.add('collapsed');
-          utilityInner.classList.add('mobile-header');
-          utilityInner.addEventListener('click', (e) => {
-            if (e.target.closest('.u-btn')) return; // Don't toggle on button click
-            utility.classList.toggle('expanded');
-            utilityInner.setAttribute('aria-expanded', utility.classList.contains('expanded'));
-          });
-        } else {
-          utility.classList.remove('collapsed', 'expanded');
-          utilityInner.classList.remove('mobile-header');
-          isCollapsed = false;
-        }
+      // ===== Mobile utility drawer toggle + dynamic wrap padding =====
+      const utility = document.getElementById('utility');
+      const toggle = document.getElementById('utilityToggle');
+      const drawer = document.getElementById('utilityDrawer');
+
+      function setUtilityHeightVar(){
+        if (!utility) return;
+        const h = utility.getBoundingClientRect().height;
+        document.documentElement.style.setProperty('--utility-h', Math.ceil(h) + 'px');
       }
-      
+
+      function isMobile(){
+        return window.matchMedia && window.matchMedia('(max-width: 640px)').matches;
+      }
+
+      function closeDrawer(){
+        if (!utility || !toggle) return;
+        utility.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        setUtilityHeightVar();
+      }
+
+      function toggleDrawer(){
+        if (!utility || !toggle) return;
+        const open = utility.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        setUtilityHeightVar();
+      }
+
+      if (toggle){
+        toggle.addEventListener('click', () => {
+          if (!isMobile()) return;
+          toggleDrawer();
+        });
+      }
+
+      document.addEventListener('click', (e) => {
+        if (!isMobile()) return;
+        if (!utility) return;
+        const inside = utility.contains(e.target);
+        if (!inside) closeDrawer();
+      });
+
+      if (drawer){
+        drawer.addEventListener('click', (e) => {
+          const a = e.target.closest('a');
+          if (a && isMobile()) closeDrawer();
+        });
+      }
+
+      window.addEventListener('load', setUtilityHeightVar);
       window.addEventListener('resize', () => {
-        const shouldBeCollapsed = window.innerWidth <= 640;
-        if (shouldBeCollapsed !== isCollapsed){\n          if (shouldBeCollapsed){\n            utility.classList.add('collapsed');\n            utility.classList.remove('expanded');\n            utilityInner.classList.add('mobile-header');\n            isCollapsed = true;\n          } else {\n            utility.classList.remove('collapsed', 'expanded');\n            utilityInner.classList.remove('mobile-header');\n            isCollapsed = false;\n          }\n        }\n      });\n      
-      initMobileUtility();
-      
+        if (!isMobile()) {
+          if (utility) utility.classList.remove('is-open');
+          if (toggle) toggle.setAttribute('aria-expanded', 'false');
+        }
+        setUtilityHeightVar();
+      });
+
+      setUtilityHeightVar();
+
       // ---------- Filters ----------
       const chips = Array.from(document.querySelectorAll('.chip[data-filter]'));
       const rows = Array.from(document.querySelectorAll('.row[data-tags]'));
-      const clearBtn = document.getElementById('clear-filters');
 
       function activeFilters(){
         return chips
@@ -1218,50 +1115,40 @@
         });
       });
 
-      if (clearBtn){
-        clearBtn.addEventListener('click', () => {
-          chips.forEach(c => c.setAttribute('aria-pressed', 'false'));
-          applyFilters();
-        });
-      }
-
       // ---------- Add-to-Calendar for timeline items ----------
       const calButtons = Array.from(document.querySelectorAll('.cal-btn'));
-      
+
       calButtons.forEach(btn => {
         btn.addEventListener('click', () => {
           const row = btn.closest('.row');
           const timeText = row.querySelector('.time')?.textContent || '';
           const detailText = row.querySelector('.detail em')?.textContent || row.querySelector('.detail')?.textContent || '';
-          
-          // Try to extract start time from the time text
+
           const timeMatch = timeText.match(/(\d{1,2}):(\d{2})\s*(AM|PM)?/i);
           if (!timeMatch) return;
-          
-          let hours = parseInt(timeMatch[1]);
-          const minutes = parseInt(timeMatch[2]);
+
+          let hours = parseInt(timeMatch[1], 10);
+          const minutes = parseInt(timeMatch[2], 10);
           const meridiem = timeMatch[3]?.toUpperCase();
-          
+
           if (meridiem === 'PM' && hours !== 12) hours += 12;
           if (meridiem === 'AM' && hours === 12) hours = 0;
-          
-          // Find which day this event is on by looking for parent details element
+
           const dayElement = btn.closest('details');
           const dayId = dayElement?.id || 'saturday';
-          
-          // Map day to date (Jan 28 - Feb 2, 2026)
+
           const dayMap = {
             'wednesday': new Date(2026, 0, 28, hours, minutes),
-            'thursday': new Date(2026, 0, 29, hours, minutes),
-            'friday': new Date(2026, 0, 30, hours, minutes),
-            'saturday': new Date(2026, 0, 31, hours, minutes),
-            'sunday': new Date(2026, 1, 1, hours, minutes),
-            'monday': new Date(2026, 1, 2, hours, minutes)
+            'thursday':  new Date(2026, 0, 29, hours, minutes),
+            'friday':    new Date(2026, 0, 30, hours, minutes),
+            'saturday':  new Date(2026, 0, 31, hours, minutes),
+            'sunday':    new Date(2026, 1, 1, hours, minutes),
+            'monday':    new Date(2026, 1, 2, hours, minutes)
           };
-          
+
           const startDate = dayMap[dayId] || new Date(2026, 0, 31, hours, minutes);
-          const endDate = new Date(startDate.getTime() + 60 * 60 * 1000); // 1 hour duration
-          
+          const endDate = new Date(startDate.getTime() + 60 * 60 * 1000);
+
           const eventObj = {
             title: 'Fabian & Kendall — ' + detailText,
             location: 'Hotel Xcaret Mexico',
@@ -1270,17 +1157,14 @@
             end: endDate,
             filename: detailText.replace(/[^\w\s]/g, '').replace(/\s+/g, '-') + '.ics'
           };
-          
+
           downloadICS(eventObj);
         });
       });
 
-      // ---------- Add-to-Calendar (ICS) ----------
-      const icsButtons = Array.from(document.querySelectorAll('button[data-ics]'));
-
+      // ---------- ICS helpers ----------
       function pad(n){ return String(n).padStart(2,'0'); }
       function toICSDate(dt){
-        // Floating local time, formatted as YYYYMMDDTHHMMSS
         return dt.getFullYear() + pad(dt.getMonth()+1) + pad(dt.getDate()) + 'T' +
                pad(dt.getHours()) + pad(dt.getMinutes()) + '00';
       }
@@ -1291,42 +1175,6 @@
           .replace(/,/g, '\\,')
           .replace(/;/g, '\\;');
       }
-
-      // NOTE: Dates reflect your itinerary (Jan 28 – Feb 2). Year set to 2026.
-      const events = {
-        welcome: {
-          filename: 'Welcome-Party.ics',
-          title: 'Fabian & Kendall — Welcome Party',
-          location: 'Hotel Xcaret Mexico',
-          start: new Date(2026, 0, 30, 17, 30), // Jan = 0
-          end:   new Date(2026, 0, 30, 19, 30),
-          description: 'Welcome Party — per the Wedding Weekend itinerary.'
-        },
-        ceremony: {
-          filename: 'Wedding-Ceremony.ics',
-          title: 'Fabian & Kendall — Wedding Ceremony',
-          location: 'Hotel Xcaret Mexico',
-          start: new Date(2026, 0, 31, 16, 30),
-          end:   new Date(2026, 0, 31, 17, 30),
-          description: 'All guests meet at the Main Lobby at 4:00 PM (guests will be escorted to the chapel).'
-        },
-        reception: {
-          filename: 'Reception.ics',
-          title: 'Fabian & Kendall — Reception',
-          location: 'Playón Viento, Hotel Xcaret Mexico',
-          start: new Date(2026, 0, 31, 19, 0),
-          end:   new Date(2026, 0, 31, 23, 0),
-          description: 'Reception at Playón Viento — per the Wedding Weekend itinerary.'
-        },
-        brunch: {
-          filename: 'Brunch.ics',
-          title: 'Fabian & Kendall — Brunch',
-          location: 'Las Cuevas (Kayak), Hotel Xcaret Mexico',
-          start: new Date(2026, 1, 1, 11, 0), // Feb = 1
-          end:   new Date(2026, 1, 1, 13, 0),
-          description: 'Brunch at Las Cuevas (Kayak) — per the Wedding Weekend itinerary.'
-        }
-      };
 
       function downloadICS(evt){
         const uid = 'wedding-weekend-' + Math.random().toString(16).slice(2) + '@kendallandfabian';
@@ -1362,98 +1210,6 @@ END:VCALENDAR`;
         setTimeout(() => URL.revokeObjectURL(url), 500);
       }
 
-      icsButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const key = btn.dataset.ics;
-          if (events[key]) downloadICS(events[key]);
-        });
-      });
-
-      // ---------- What’s next widget ----------
-      const nextTitle = document.getElementById('nextup-title');
-      const nextSub = document.getElementById('nextup-sub');
-      const expandTodayBtn = document.getElementById('expand-today');
-
-      // Build a minimal list of key timed events (from your itinerary)
-      const keyEvents = [
-        { id:'wednesday', label:'Wed — Check-in (7:30 AM)', time: new Date(2026,0,28,7,30), anchor:'#wednesday' },
-        { id:'thursday',  label:'Thu — Xoximilco Floating Fiesta! (6:00 PM)', time: new Date(2026,0,29,18,0), anchor:'#thursday' },
-        { id:'friday',    label:'Fri — Welcome Party (5:30 PM)', time: new Date(2026,0,30,17,30), anchor:'#friday' },
-        { id:'saturday',  label:'Sat — Meet at Main Lobby (4:00 PM)', time: new Date(2026,0,31,16,0), anchor:'#saturday' },
-        { id:'saturday',  label:'Sat — Wedding Ceremony (4:30 PM)', time: new Date(2026,0,31,16,30), anchor:'#saturday' },
-        { id:'sunday',    label:'Sun — Brunch (11:00 AM)', time: new Date(2026,1,1,11,0), anchor:'#sunday' }
-      ];
-
-      function sameDay(a,b){
-        return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate();
-      }
-
-      function updateNext(){
-        const now = new Date();
-        const upcoming = keyEvents
-          .map(e => ({...e, diff: e.time - now}))
-          .filter(e => e.diff > 0)
-          .sort((a,b) => a.diff - b.diff)[0];
-
-        if (!nextTitle) return;
-
-        if (upcoming){
-          nextTitle.textContent = upcoming.label;
-          if (nextSub){
-            nextSub.textContent = 'Based on your device time. Tap a day or use the jump links above.';
-          }
-          if (expandTodayBtn){
-            expandTodayBtn.onclick = () => {
-              const el = document.getElementById(upcoming.id);
-              if (el && el.tagName.toLowerCase() === 'details'){
-                el.open = true;
-                el.scrollIntoView({behavior:'smooth', block:'start'});
-              }
-            };
-          }
-        } else {
-          // If past all events, default to Saturday open
-          nextTitle.textContent = 'You can jump to any day below — enjoy the weekend!';
-          if (expandTodayBtn){
-            expandTodayBtn.onclick = () => {
-              const el = document.getElementById('saturday');
-              if (el && el.tagName.toLowerCase() === 'details'){
-                el.open = true;
-                el.scrollIntoView({behavior:'smooth', block:'start'});
-              }
-            };
-          }
-        }
-      }
-
-      updateNext();
-      setInterval(updateNext, 60 * 1000);
-
-      // ---------- Open today’s card (best-effort) ----------
-      function openCardForToday(){
-        const today = new Date();
-        const map = [
-          { id:'wednesday', date: new Date(2026,0,28) },
-          { id:'thursday',  date: new Date(2026,0,29) },
-          { id:'friday',    date: new Date(2026,0,30) },
-          { id:'saturday',  date: new Date(2026,0,31) },
-          { id:'sunday',    date: new Date(2026,1,1) },
-          { id:'monday',    date: new Date(2026,1,2) }
-        ];
-        const match = map.find(d => sameDay(d.date, today));
-        if (!match) return false;
-
-        const el = document.getElementById(match.id);
-        if (el && el.tagName.toLowerCase() === 'details'){
-          el.open = true;
-          return true;
-        }
-        return false;
-      }
-
-      // Run once on load (non-invasive)
-      openCardForToday();
-
       // ---------- Fix anchor jump for details (ensure it opens) ----------
       function openOnHash(){
         const hash = window.location.hash || '';
@@ -1465,9 +1221,6 @@ END:VCALENDAR`;
       }
       window.addEventListener('hashchange', openOnHash);
       openOnHash();
-
-      // ---------- Safety: remove the accidental stray characters if any got pasted ----------
-      // (No-op: kept intentionally empty.)
     })();
   </script>
 </body>
