@@ -5,8 +5,20 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Fabian & Kendall’s Wedding Weekend — Hotel Xcaret Mexico • Riviera Maya</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <!-- SEO / Social -->
+  <meta name="description" content="Fabian & Kendall’s Wedding Weekend guide at Hotel Xcaret Mexico — itinerary, links, reservations, and key weekend events." />
+  <meta property="og:title" content="Fabian & Kendall’s Wedding Weekend — Hotel Xcaret Mexico" />
+  <meta property="og:description" content="Your weekend guide — itinerary, links, reservations, and key events." />
+  <meta property="og:type" content="website" />
+  <!-- Update these if you have a real preview image -->
+  <meta property="og:image" content="assets/xcaret-chapel.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#167a70" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -30,10 +42,13 @@
       --radius-md: 14px;
 
       --max: 1040px;
+
+      --focus: 0 0 0 3px rgba(31,143,131,.25), 0 0 0 1px rgba(31,143,131,.45);
     }
 
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
+    html{ scroll-behavior:smooth; }
 
     body{
       margin:0;
@@ -51,12 +66,121 @@
     a{ color: var(--jade-700); text-decoration: none; }
     a:hover{ text-decoration: underline; }
 
+    :focus-visible{
+      outline: none;
+      box-shadow: var(--focus);
+      border-radius: 10px;
+    }
+
+    .skip{
+      position:absolute;
+      left:-999px;
+      top:auto;
+      width:1px;
+      height:1px;
+      overflow:hidden;
+    }
+    .skip:focus-visible{
+      left: 14px;
+      top: 14px;
+      width:auto;
+      height:auto;
+      background:#fff;
+      color:var(--ink);
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(31,45,43,.12);
+      z-index: 9999;
+    }
+
     .wrap{
       width:100%;
       max-width: var(--max);
       margin: 0 auto;
-      padding: 28px 16px 40px;
+      padding: 72px 16px 40px; /* top padding accounts for sticky utility bar */
     }
+
+    /* Sticky utility bar (Guest Services feel) */
+    .utility{
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      background: rgba(251,250,247,.78);
+      border-bottom: 1px solid rgba(31,45,43,.10);
+    }
+    .utility-inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 10px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .utility-left{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width: 220px;
+    }
+    .brand-mark{
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background:
+        radial-gradient(18px 18px at 35% 30%, rgba(198,162,91,.55), transparent 60%),
+        radial-gradient(20px 20px at 70% 65%, rgba(31,143,131,.55), transparent 62%),
+        linear-gradient(180deg, rgba(16,26,24,.88), rgba(16,26,24,.72));
+      border: 1px solid rgba(255,255,255,.55);
+      box-shadow: 0 10px 24px rgba(9,20,18,.08);
+      flex: 0 0 auto;
+    }
+    .utility-title{
+      display:flex;
+      flex-direction:column;
+      line-height: 1.1;
+    }
+    .utility-title strong{
+      font-size: .92rem;
+      letter-spacing: .01em;
+    }
+    .utility-title span{
+      font-size: .82rem;
+      color: var(--muted);
+    }
+
+    .utility-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      justify-content:flex-end;
+    }
+
+    .u-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(31,45,43,.10);
+      background: rgba(255,255,255,.72);
+      color: var(--ink);
+      font-weight: 700;
+      font-size: .88rem;
+      min-height: 40px;
+      white-space:nowrap;
+    }
+    .u-btn.primary{
+      background: linear-gradient(180deg, var(--jade-600), var(--jade-700));
+      color:#fff;
+      border-color: rgba(255,255,255,.18);
+      box-shadow: 0 12px 24px rgba(31,143,131,.18);
+    }
+    .u-btn:hover{ text-decoration:none; filter: brightness(1.01); }
 
     /* HERO */
     .hero{
@@ -65,15 +189,12 @@
       overflow:hidden;
       background:
         linear-gradient(180deg, rgba(16,26,24,.35) 0%, rgba(16,26,24,.15) 45%, rgba(16,26,24,.30) 100%),
-        /* Add your own image in repo: /assets/xcaret-chapel.jpg */
         url("assets/xcaret-chapel.jpg");
       background-size: cover;
       background-position: center;
       box-shadow: var(--shadow);
       border: 1px solid rgba(255,255,255,.25);
     }
-
-    /* If you don't add an image, this gradient still looks nice */
     .hero.no-image{
       background:
         radial-gradient(900px 500px at 30% 10%, rgba(31,143,131,.38), transparent 60%),
@@ -94,7 +215,7 @@
       border-radius: 999px;
       background: rgba(255,255,255,.14);
       border: 1px solid rgba(255,255,255,.18);
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: .06em;
       text-transform: uppercase;
       font-size: .78rem;
@@ -110,9 +231,10 @@
 
     .subtitle{
       margin:0;
-      color: rgba(255,255,255,.86);
+      color: rgba(255,255,255,.88);
       font-weight: 400;
       font-size: 1.02rem;
+      max-width: 60ch;
     }
 
     .hero-bottom{
@@ -132,7 +254,7 @@
       gap:8px;
       align-items:center;
       color: rgba(255,255,255,.92);
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .pill{
@@ -162,7 +284,7 @@
       background: rgba(255,255,255,.10);
       border: 1px solid rgba(255,255,255,.16);
       backdrop-filter: blur(6px);
-      font-weight: 600;
+      font-weight: 700;
       font-size: .92rem;
     }
     .nav a:hover{ background: rgba(255,255,255,.16); }
@@ -210,15 +332,99 @@
       gap:10px;
       align-items:flex-start;
       color: var(--ink);
-      font-weight: 600;
+      font-weight: 700;
     }
-    .callout span{ font-weight: 600; }
+    .callout span{ font-weight: 800; }
     .callout small{
       display:block;
       color: var(--muted);
       font-weight: 400;
       margin-top: 2px;
     }
+
+    /* At-a-glance */
+    .glance{
+      margin-top: 16px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    @media(min-width:860px){
+      .glance{ grid-template-columns: 1.2fr .8fr; }
+    }
+    .glance-card{
+      background: var(--card-solid);
+      border: 1px solid rgba(31,45,43,.08);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 14px 34px rgba(9,20,18,.06);
+      overflow:hidden;
+    }
+    .glance-inner{
+      padding: 16px;
+    }
+    .glance-title{
+      margin: 0 0 8px;
+      font-family: "Playfair Display", serif;
+      font-weight: 600;
+      font-size: 1.18rem;
+      letter-spacing: -0.01em;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .glance-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    @media(min-width:640px){
+      .glance-grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+    .mini{
+      border: 1px solid rgba(31,45,43,.08);
+      background: rgba(251,250,247,.75);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .mini strong{
+      display:block;
+      font-size: .88rem;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .mini div{
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    /* Quick actions */
+    .quick-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top: 10px;
+    }
+    .qa-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(31,45,43,.10);
+      background: rgba(255,255,255,.80);
+      font-weight: 800;
+      font-size: .9rem;
+      color: var(--ink);
+      cursor:pointer;
+    }
+    .qa-btn.primary{
+      background: linear-gradient(180deg, rgba(31,143,131,.16), rgba(31,143,131,.08));
+      border-color: rgba(31,143,131,.18);
+    }
+    .qa-btn:hover{ filter: brightness(1.01); }
 
     /* LINKS */
     .links{
@@ -238,7 +444,7 @@
       gap:10px;
       padding: 12px 12px;
       border-radius: 999px;
-      font-weight: 600;
+      font-weight: 800;
       border: 1px solid rgba(255,255,255,.18);
       background: linear-gradient(180deg, var(--jade-600), var(--jade-700));
       color: #fff;
@@ -248,14 +454,69 @@
       text-align:center;
       min-height: 44px;
     }
-    .btn.primary{
-      /* kept for semantic clarity; styling unified in `.btn` */
-    }
     .btn:hover{
       transform: translateY(-1px);
       text-decoration:none;
     }
     .btn:active{ transform: translateY(0); }
+
+    /* NEW: Link grouping labels (no content change, just structure) */
+    .link-groups{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 12px;
+    }
+    @media(min-width:900px){
+      .link-groups{ grid-template-columns: 1fr 1fr 1fr; }
+    }
+    .group{
+      background: rgba(255,255,255,.66);
+      border: 1px solid rgba(31,45,43,.08);
+      border-radius: var(--radius-lg);
+      padding: 14px;
+    }
+    .group h3{
+      margin: 0 0 10px;
+      font-size: .92rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .group .links{
+      margin-top: 0;
+      grid-template-columns: 1fr;
+    }
+
+    /* Filters */
+    .filters{
+      margin-top: 10px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(31,45,43,.10);
+      background: rgba(255,255,255,.76);
+      font-weight: 800;
+      font-size: .9rem;
+      cursor:pointer;
+      user-select:none;
+    }
+    .chip[aria-pressed="true"]{
+      background: linear-gradient(180deg, rgba(31,143,131,.16), rgba(31,143,131,.08));
+      border-color: rgba(31,143,131,.20);
+    }
+    .chip small{
+      font-weight: 700;
+      color: var(--muted);
+    }
 
     /* ITINERARY GRID */
     .grid{
@@ -268,6 +529,7 @@
       .grid{ grid-template-columns: repeat(2, 1fr); }
     }
 
+    /* Accordion day card */
     .day{
       background: var(--card-solid);
       border: 1px solid rgba(31,45,43,.08);
@@ -275,6 +537,13 @@
       box-shadow: 0 14px 34px rgba(9,20,18,.06);
       overflow:hidden;
     }
+    details.day{ padding:0; }
+    details.day > summary{
+      list-style:none;
+      cursor:pointer;
+      user-select:none;
+    }
+    details.day > summary::-webkit-details-marker{ display:none; }
 
     .day-head{
       padding: 16px 16px 12px;
@@ -282,6 +551,10 @@
       background:
         radial-gradient(700px 260px at 20% 0%, rgba(31,143,131,.10), transparent 60%),
         linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.92));
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
     }
 
     .day-title{
@@ -298,7 +571,30 @@
       margin: 6px 0 0;
       color: var(--muted);
       font-size: .95rem;
+      max-width: 60ch;
     }
+
+    .chev{
+      flex: 0 0 auto;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      border: 1px solid rgba(31,45,43,.10);
+      background: rgba(255,255,255,.70);
+      display:grid;
+      place-items:center;
+      margin-top: 2px;
+    }
+    .chev span{
+      display:block;
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid rgba(31,45,43,.60);
+      border-bottom: 2px solid rgba(31,45,43,.60);
+      transform: rotate(45deg);
+      transition: transform .14s ease;
+    }
+    details[open] .chev span{ transform: rotate(225deg); }
 
     .timeline{
       margin:0;
@@ -314,13 +610,36 @@
       grid-template-columns: 140px 1fr;
       gap: 12px;
       padding: 10px 10px;
+      padding-right: 120px;
       border-radius: 12px;
       border: 1px solid rgba(31,45,43,.06);
       background: rgba(251,250,247,.75);
+      position: relative;
+    }
+
+    .cal-btn{
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      padding: 3px 4px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: all 0.2s ease;
+    }
+
+    .cal-btn:hover{
+      opacity: 1;
+      background: rgba(31,143,131,.15);
+      transform: scale(1.1);
     }
 
     .time{
-      font-weight: 700;
+      font-weight: 800;
       color: var(--jade-700);
       font-size: .95rem;
       letter-spacing: .01em;
@@ -334,7 +653,7 @@
 
     .detail em{
       font-style: normal;
-      font-weight: 600;
+      font-weight: 800;
       color: var(--ink);
     }
 
@@ -350,7 +669,66 @@
     }
     .row.optional .time{ color: #8b6b2d; }
 
-    /* FOOTER */
+    /* Tags (experience chips) */
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      margin-top: 6px;
+    }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(31,45,43,.10);
+      background: rgba(255,255,255,.74);
+      font-size: .78rem;
+      font-weight: 800;
+      color: var(--muted);
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+    .tag.wedding{ border-color: rgba(198,162,91,.22); color:#7a5c23; background: rgba(198,162,91,.10); }
+    .tag.park{ border-color: rgba(31,143,131,.22); color: var(--jade-700); background: rgba(31,143,131,.10); }
+    .tag.dining{ border-color: rgba(31,45,43,.14); color: var(--ink); background: rgba(31,45,43,.06); }
+    .tag.optional{ border-color: rgba(198,162,91,.26); color:#7a5c23; background: rgba(198,162,91,.12); }
+    .tag.meet{ border-color: rgba(31,143,131,.18); color: var(--jade-700); background: rgba(31,143,131,.08); }
+
+    /* Next up widget */
+    .nextup{
+      margin-top: 10px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(31,45,43,.10);
+      background: rgba(255,255,255,.78);
+      overflow:hidden;
+    }
+    .nextup-inner{
+      padding: 14px 14px;
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .nextup h3{
+      margin:0 0 6px;
+      font-size: .92rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .nextup p{ margin:0; font-weight: 800; }
+    .nextup small{ color: var(--muted); font-weight: 600; display:block; margin-top: 4px; }
+    .nextup .right{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
+    }
+
+    /* Footer */
     footer{
       text-align:center;
       margin-top: 18px;
@@ -359,23 +737,66 @@
       font-size: .95rem;
     }
 
+    .help{
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(31,45,43,.10);
+      background: rgba(255,255,255,.70);
+    }
+    .help strong{ display:block; margin-bottom: 4px; }
+    .help a{ font-weight: 800; }
+
     /* PRINT */
     @media print{
+      .utility{ display:none !important; }
+      .wrap{ padding-top: 20px; }
       body{ background:#fff; }
       .hero{ box-shadow:none; border:1px solid #000; }
-      .nav, .links{ display:none !important; }
-      .section, .day{ box-shadow:none; }
+      .links, .filters, .nextup{ display:none !important; }
+      .section, details.day{ box-shadow:none; }
       a[href^="mailto:"]::after{ content: " (" attr(href) ")"; color:#444; font-weight:normal; }
       .row{ break-inside: avoid; }
+      details.day{ border:1px solid #000; }
+      details.day > summary{ border-bottom:1px solid #000; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior:auto; }
+      .btn, .chev span{ transition:none !important; }
     }
   </style>
 </head>
 
 <body>
+  <a class="skip" href="#main">Skip to itinerary</a>
+
+  <!-- Sticky utility bar -->
+  <header class="utility" role="banner" aria-label="Guest Services utility bar">
+    <div class="utility-inner">
+      <div class="utility-left">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div class="utility-title">
+          <strong>Guest Services</strong>
+          <span>Hotel Xcaret Mexico • Riviera Maya</span>
+        </div>
+      </div>
+
+      <div class="utility-actions" aria-label="Quick actions">
+        <a class="u-btn" href="mailto:dxguestservice@hotelxcaret.com">✉️ Email</a>
+        <a class="u-btn" href="https://chat.whatsapp.com/JJ0D7D8qJ9U3N2RvWMiJin" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+        <a class="u-btn" href="https://drive.google.com/file/d/1oCG33oFJfu82XoI8DT_nC8EVomUehXsM/view?usp=sharing" target="_blank" rel="noopener noreferrer">📝 Reservations</a>
+        <a class="u-btn" href="https://drive.google.com/file/d/1xNGMCaLoUavbsrdopF5Npiu8Q1oxtWT6/view?usp=sharing" target="_blank" rel="noopener noreferrer">🗺️ Map</a>
+        <a class="u-btn primary" href="#main">📅 Itinerary</a>
+      </div>
+    </div>
+  </header>
+
   <div class="wrap">
 
     <!-- If you don't have a background image yet, add class "no-image" below -->
-    <section class="hero">
+    <section class="hero" aria-label="Hero">
       <div class="hero-inner">
         <div class="kicker">Hotel Xcaret Mexico • Riviera Maya</div>
         <h1 class="title">Fabian &amp; Kendall’s Wedding Weekend</h1>
@@ -402,8 +823,8 @@
     <section class="section" aria-label="Intro">
       <div class="section-inner">
         <p class="intro">
-          We’re so excited to celebrate with you in Mexico! This itinerary includes what we’ll be doing each day.
-          Join us for anything you’d like, and please feel free to make your own plans and reservations as well —
+          We're so excited to celebrate with you in Mexico! This itinerary includes what we'll be doing each day.
+          Join us for anything you'd like, and please feel free to make your own plans and reservations as well —
           whether that means relaxing at the resort, exploring the parks, or enjoying excursions. This is your vacation too!
         </p>
 
@@ -426,134 +847,538 @@
       </div>
     </section>
 
-    <section class="section" aria-label="Links">
+    <section class="section" aria-label="At a glance">
       <div class="section-inner">
-        <h2>🔗 Links &amp; Resources</h2>
-
-        <div class="links" role="navigation" aria-label="Quick links">
-          <a class="btn primary" href="https://drive.google.com/file/d/1h5ixye5rqxJyfygHQlrHrEBW51uS2n-0/view?usp=sharing" target="_blank" rel="noopener noreferrer">📄 Itinerary PDF</a>
-          <a class="btn" href="https://drive.google.com/file/d/1oCG33oFJfu82XoI8DT_nC8EVomUehXsM/view?usp=sharing" target="_blank" rel="noopener noreferrer">📝 Restaurants + Parks Reservation Form</a>
-          <a class="btn primary" href="https://kendallandfabian.com/" target="_blank" rel="noopener noreferrer">💌 Wedding Website</a>
-          <a class="btn primary" href="https://kendallandfabian.com/#p286262" target="_blank" rel="noopener noreferrer">🎁 Registry</a>
-          <a class="btn" href="https://drive.google.com/file/d/1xNGMCaLoUavbsrdopF5Npiu8Q1oxtWT6/view?usp=sharing" target="_blank" rel="noopener noreferrer">🗺️ Xcaret Map</a>
-          <a class="btn primary" href="https://chat.whatsapp.com/JJ0D7D8qJ9U3N2RvWMiJin" target="_blank" rel="noopener noreferrer">💬 Wedding Weekend WhatsApp</a>
+        <h2>🌿 At a glance</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 12px;">
+          <div style="padding: 12px; background: rgba(31,143,131,.08); border-radius: 8px;">
+            <strong>Must attend</strong>
+            <div style="margin-top: 6px; font-size: 0.95rem;">Friday Welcome Party + Saturday Wedding &amp; Reception</div>
+          </div>
+          <div style="padding: 12px; background: rgba(31,143,131,.08); border-radius: 8px;">
+            <strong>Reservations</strong>
+            <div style="margin-top: 6px; font-size: 0.95rem;">Complete form + email Guest Services</div>
+          </div>
+          <div style="padding: 12px; background: rgba(31,143,131,.08); border-radius: 8px;">
+            <strong>Flexibility</strong>
+            <div style="margin-top: 6px; font-size: 0.95rem;">Join us for anything — come and go as you please</div>
+          </div>
         </div>
 
-        <p class="intro" style="margin-top: 32px;">
-          We encourage you to join our WhatsApp group to stay connected, share updates, and coordinate activities with the wedding party!
-        </p>
-
-        <div style="text-align: center; margin-top: 20px;">
-          <img src="assets/whatsapp-qr.png" alt="WhatsApp Group QR Code" style="max-width: 200px; height: auto;">
+        <div style="margin-top: 24px; padding: 14px; background: rgba(198,162,91,.08); border-radius: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+          <div>
+            <h3 style="margin: 0 0 4px; font-size: 1rem;">What's next</h3>
+            <p id="nextup-title" style="margin: 0; font-weight: 600; font-size: 1.1rem;">Loading…</p>
+            <small id="nextup-sub" style="color: var(--muted);">Based on your device time. You can still jump to any day below.</small>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="qa-btn" type="button" id="expand-today" style="padding: 10px 12px; border-radius: 6px; background: rgba(31,143,131,.15); border: 1px solid rgba(31,143,131,.3); cursor: pointer; font-weight: 600; font-size: 0.92rem;">Open today's card</button>
+          </div>
         </div>
       </div>
     </section>
 
-    <main class="grid" aria-label="Itinerary">
+    <section class="section" aria-label="Guest Services & Links">
+      <div class="section-inner">
+        <h2>🔗 Guest Services &amp; Resources</h2>
+
+        <div class="filters" aria-label="Filter itinerary by experience">
+          <button class="chip" type="button" data-filter="wedding" aria-pressed="false">💍 Wedding <small>events</small></button>
+          <button class="chip" type="button" data-filter="park" aria-pressed="false">🌿 Parks</button>
+          <button class="chip" type="button" data-filter="dining" aria-pressed="false">🍽️ Dining</button>
+          <button class="chip" type="button" data-filter="optional" aria-pressed="false">⭐ Optional</button>
+          <button class="chip" type="button" data-filter="meet" aria-pressed="false">📍 Meet-ups</button>
+        </div>
+
+        <!-- Same links, now grouped for easier scanning -->
+        <div class="link-groups" role="navigation" aria-label="Quick links">
+          <div class="group">
+            <h3>Planning</h3>
+            <div class="links">
+              <a class="btn" href="https://drive.google.com/file/d/1oCG33oFJfu82XoI8DT_nC8EVomUehXsM/view?usp=sharing" target="_blank" rel="noopener noreferrer">📝 Restaurants + Parks Reservation Form</a>
+              <a class="btn" href="https://drive.google.com/file/d/1xNGMCaLoUavbsrdopF5Npiu8Q1oxtWT6/view?usp=sharing" target="_blank" rel="noopener noreferrer">🗺️ Xcaret Map</a>
+              <a class="btn" href="https://drive.google.com/file/d/1h5ixye5rqxJyfygHQlrHrEBW51uS2n-0/view?usp=sharing" target="_blank" rel="noopener noreferrer">📄 Itinerary PDF</a>
+            </div>
+          </div>
+
+          <div class="group">
+            <h3>Wedding</h3>
+            <div class="links">
+              <a class="btn" href="https://kendallandfabian.com/" target="_blank" rel="noopener noreferrer">💌 Wedding Website</a>
+              <a class="btn" href="https://kendallandfabian.com/#p286262" target="_blank" rel="noopener noreferrer">🎁 Registry</a>
+            </div>
+          </div>
+
+          <div class="group">
+            <h3>Communication</h3>
+            <div class="links">
+              <a class="btn" href="https://chat.whatsapp.com/JJ0D7D8qJ9U3N2RvWMiJin" target="_blank" rel="noopener noreferrer">💬 Wedding Weekend WhatsApp</a>
+            </div>
+            <p class="intro" style="margin-top: 12px;">
+              We encourage you to join our WhatsApp group to stay connected, share updates, and coordinate activities with the wedding party!
+            </p>
+            <div style="text-align: center; margin-top: 12px;">
+              <img src="assets/whatsapp-qr.png" alt="WhatsApp Group QR Code" style="max-width: 200px; height: auto;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main id="main" class="grid" aria-label="Itinerary">
 
       <!-- Wednesday -->
-      <article class="day" id="wednesday" aria-labelledby="wed-title">
-        <header class="day-head">
-          <h3 class="day-title" id="wed-title">🌞 Wednesday, January 28 — Our Arrival Day</h3>
-        </header>
+      <details class="day" id="wednesday" aria-labelledby="wed-title" open>
+        <summary>
+          <header class="day-head">
+            <div>
+              <h3 class="day-title" id="wed-title">🌞 Wednesday, January 28 — Our Arrival Day</h3>
+            </div>
+            <div class="chev" aria-hidden="true"><span></span></div>
+          </header>
+        </summary>
         <ul class="timeline">
-          <li class="row"><div class="time">7:30 AM</div><div class="detail"><em>Check-in</em></div></li>
-          <li class="row"><div class="time">9:00 AM – 2:00 PM</div><div class="detail"><em>Xenses</em></div></li>
-          <li class="row"><div class="time">2:15 PM</div><div class="detail"><em>Lunch at Las Playas</em></div></li>
-          <li class="row"><div class="time">4:00 PM</div><div class="detail"><em>Xcaret Park</em></div></li>
-          <li class="row"><div class="time">7:00 PM – 9:00 PM</div><div class="detail"><em>México Espectacular show</em></div></li>
-          <li class="row"><div class="time">10:00 PM</div><div class="detail"><em>Late Dinner at Las Sillas</em> <span class="note">(closes 11:00 PM)</span></div></li>
+          <li class="row" data-tags="meet"><div class="time">7:30 AM</div><div class="detail"><em>Check-in</em><div class="tags"><span class="tag meet">Meet-up</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="park"><div class="time">9:00 AM – 2:00 PM</div><div class="detail"><em>Xenses</em><div class="tags"><span class="tag park">Park</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="dining"><div class="time">2:15 PM</div><div class="detail"><em>Lunch at Las Playas</em><div class="tags"><span class="tag dining">Dining</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="park"><div class="time">4:00 PM</div><div class="detail"><em>Xcaret Park</em><div class="tags"><span class="tag park">Park</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="park"><div class="time">7:00 PM – 9:00 PM</div><div class="detail"><em>México Espectacular show</em><div class="tags"><span class="tag park">Park</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="dining"><div class="time">10:00 PM</div><div class="detail"><em>Late Dinner at Las Sillas</em> <span class="note">(closes 11:00 PM)</span><div class="tags"><span class="tag dining">Dining</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
         </ul>
-      </article>
+      </details>
 
       <!-- Thursday -->
-      <article class="day" id="thursday" aria-labelledby="thu-title">
-        <header class="day-head">
-          <h3 class="day-title" id="thu-title">🌴 Thursday, January 29 — Friends Arrive</h3>
-        </header>
+      <details class="day" id="thursday" aria-labelledby="thu-title" open>
+        <summary>
+          <header class="day-head">
+            <div>
+              <h3 class="day-title" id="thu-title">🌴 Thursday, January 29 — Friends Arrive</h3>
+            </div>
+            <div class="chev" aria-hidden="true"><span></span></div>
+          </header>
+        </summary>
         <ul class="timeline">
-          <li class="row"><div class="time">9:00 AM</div><div class="detail"><em>Breakfast at Arriba Baja</em></div></li>
-          <li class="row"><div class="time">10:40 AM</div><div class="detail"><em>Xplor Park</em> <span class="note">(4–5 hours)</span></div></li>
-          <li class="row"><div class="time">3:00 PM</div><div class="detail"><em>Lunch at El Mercado</em></div></li>
-          <li class="row"><div class="time">6:00 PM</div><div class="detail"><em>Xoximilco Floating Fiesta!</em> <span class="note">(meet at lobby)</span></div></li>
+          <li class="row" data-tags="dining"><div class="time">9:00 AM</div><div class="detail"><em>Breakfast at Arriba Baja</em><div class="tags"><span class="tag dining">Dining</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="park"><div class="time">10:40 AM</div><div class="detail"><em>Xplor Park</em> <span class="note">(4–5 hours)</span><div class="tags"><span class="tag park">Park</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="dining"><div class="time">3:00 PM</div><div class="detail"><em>Lunch at El Mercado</em><div class="tags"><span class="tag dining">Dining</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="park,meet"><div class="time">6:00 PM</div><div class="detail"><em>Xoximilco Floating Fiesta!</em> <span class="note">(meet at lobby)</span><div class="tags"><span class="tag park">Park</span><span class="tag meet">Meet-up</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
         </ul>
-      </article>
+      </details>
 
       <!-- Friday -->
-      <article class="day" id="friday" aria-labelledby="fri-title">
-        <header class="day-head">
-          <h3 class="day-title" id="fri-title">🍹 Friday, January 30 — Most Guests Arrive</h3>
-        </header>
+      <details class="day" id="friday" aria-labelledby="fri-title" open>
+        <summary>
+          <header class="day-head">
+            <div>
+              <h3 class="day-title" id="fri-title">🍹 Friday, January 30 — Most Guests Arrive</h3>
+            </div>
+            <div class="chev" aria-hidden="true"><span></span></div>
+          </header>
+        </summary>
         <ul class="timeline">
-          <li class="row"><div class="time">8:00 AM</div><div class="detail"><em>Breakfast at Fuego</em></div></li>
-          <li class="row"><div class="time">Daytime</div><div class="detail">Pool / relax / enjoy the resort</div></li>
+          <li class="row" data-tags="dining"><div class="time">8:00 AM</div><div class="detail"><em>Breakfast at Fuego</em><div class="tags"><span class="tag dining">Dining</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags=""><div class="time">Daytime</div><div class="detail">Pool / relax / enjoy the resort</div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
 
-          <li class="row"><div class="time">5:30 PM</div><div class="detail"><em>Welcome Party</em></div></li>
-          <li class="row"><div class="time">6:30 PM</div><div class="detail"><em>Rehearsal</em></div></li>
-          <li class="row"><div class="time">7:00 PM</div><div class="detail"><em>Lobby Bar</em></div></li>
-          <li class="row"><div class="time">8:00 PM</div><div class="detail"><em>Dinner at El Mercado</em> <span class="note">(no reservation needed — come and go as you please)</span></div></li>
+          <li class="row" data-tags="wedding"><div class="time">5:30 PM</div><div class="detail"><em>Welcome Party</em><div class="tags"><span class="tag wedding">Wedding Event</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="wedding"><div class="time">6:30 PM</div><div class="detail"><em>Rehearsal</em><div class="tags"><span class="tag wedding">Wedding Event</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="meet"><div class="time">7:00 PM</div><div class="detail"><em>Lobby Bar</em><div class="tags"><span class="tag meet">Meet-up</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="dining"><div class="time">8:00 PM</div><div class="detail"><em>Dinner at El Mercado</em> <span class="note">(no reservation needed — come and go as you please)</span><div class="tags"><span class="tag dining">Dining</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
 
-          <li class="row optional">
+          <li class="row optional" data-tags="park,optional">
             <div class="time">Optional</div>
-            <div class="detail"><em>✅ Highly Recommended: Xplor Fuego</em> <span class="note">Shuttles 7:00 PM – 10:30 PM, every 30 min</span></div>
+            <div class="detail"><em>✅ Highly Recommended: Xplor Fuego</em> <span class="note">Shuttles 7:00 PM – 10:30 PM, every 30 min</span>
+              <div class="tags"><span class="tag park">Park</span><span class="tag optional">Optional</span></div>
+            </div>
           </li>
         </ul>
-      </article>
+      </details>
 
       <!-- Saturday -->
-      <article class="day" id="saturday" aria-labelledby="sat-title">
-        <header class="day-head">
-          <h3 class="day-title" id="sat-title">💍 Saturday, January 31 — Wedding Day</h3>
-          <p class="day-sub">Morning is open — enjoy breakfast, pool, spa, or a park excursion.</p>
-        </header>
+      <details class="day" id="saturday" aria-labelledby="sat-title" open>
+        <summary>
+          <header class="day-head">
+            <div>
+              <h3 class="day-title" id="sat-title">💍 Saturday, January 31 — Wedding Day</h3>
+              <p class="day-sub">Morning is open — enjoy breakfast, pool, spa, or a park excursion.</p>
+            </div>
+            <div class="chev" aria-hidden="true"><span></span></div>
+          </header>
+        </summary>
+
         <ul class="timeline">
-          <li class="row"><div class="time">Morning</div><div class="detail">Guests enjoy breakfast, pool, spa, or park excursion</div></li>
-          <li class="row"><div class="time">4:00 PM</div><div class="detail"><em>All guests meet at the Main Lobby</em> <span class="note">(guests will be escorted to the chapel)</span></div></li>
-          <li class="row"><div class="time">4:30 PM</div><div class="detail"><em>Wedding Ceremony</em></div></li>
-          <li class="row"><div class="time">6:00 PM</div><div class="detail"><em>Cocktail Hour at Playón Viento</em></div></li>
-          <li class="row"><div class="time">7:00 PM</div><div class="detail"><em>Reception at Playón Viento</em></div></li>
-          <li class="row"><div class="time">11:00 PM</div><div class="detail"><em>After Party: Los Faroles or Xupes</em> 🎉</div></li>
+          <li class="row" data-tags="">
+            <div class="time">Morning</div>
+            <div class="detail">Guests enjoy breakfast, pool, spa, or park excursion</div>
+            <button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button>
+          </li>
+
+          <!-- Same content, simply highlighted for scanability -->
+          <li class="row" data-tags="meet,wedding">
+            <div class="time">4:00 PM</div>
+            <div class="detail">
+              <em>All guests meet at the Main Lobby</em> <span class="note">(guests will be escorted to the chapel)</span>
+              <div class="tags"><span class="tag meet">Meet-up</span><span class="tag wedding">Wedding Event</span></div>
+            </div>
+            <button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button>
+          </li>
+
+          <li class="row" data-tags="wedding"><div class="time">4:30 PM</div><div class="detail"><em>Wedding Ceremony</em><div class="tags"><span class="tag wedding">Wedding Event</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="wedding"><div class="time">6:00 PM</div><div class="detail"><em>Cocktail Hour at Playón Viento</em><div class="tags"><span class="tag wedding">Wedding Event</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="wedding"><div class="time">7:00 PM</div><div class="detail"><em>Reception at Playón Viento</em><div class="tags"><span class="tag wedding">Wedding Event</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="wedding,optional"><div class="time">11:00 PM</div><div class="detail"><em>After Party: Los Faroles or Xupes</em> 🎉<div class="tags"><span class="tag wedding">Wedding Event</span><span class="tag optional">Optional</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
         </ul>
-      </article>
+      </details>
 
       <!-- Sunday -->
-      <article class="day" id="sunday" aria-labelledby="sun-title">
-        <header class="day-head">
-          <h3 class="day-title" id="sun-title">🍽️ Sunday, February 1 — Brunch + Relax</h3>
-        </header>
+      <details class="day" id="sunday" aria-labelledby="sun-title" open>
+        <summary>
+          <header class="day-head">
+            <div>
+              <h3 class="day-title" id="sun-title">🍽️ Sunday, February 1 — Brunch + Relax</h3>
+            </div>
+            <div class="chev" aria-hidden="true"><span></span></div>
+          </header>
+        </summary>
+
         <ul class="timeline">
-          <li class="row">
+          <li class="row" data-tags="dining,wedding">
             <div class="time">11:00 AM</div>
             <div class="detail">
               <em>Brunch at Las Cuevas (Kayak)</em>
               <div class="note">Included only for guests staying in the Fuego building</div>
               <div class="note">Otherwise $220 USD/person — Reservation required</div>
               <div class="note">For non-Fuego guests, El Mercado is a great option</div>
+              <div class="tags"><span class="tag dining">Dining</span><span class="tag wedding">Wedding Event</span></div>
             </div>
+            <button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button>
           </li>
-          <li class="row"><div class="time">Daytime</div><div class="detail">Pool day / Isla Mujeres optional</div></li>
-          <li class="row"><div class="time">Parks</div><div class="detail">Only Parks open: Xcaret Park and Xel-Há</div></li>
-          <li class="row"><div class="time">Bride &amp; Groom</div><div class="detail">Relaxing at the resort 🌴</div></li>
+          <li class="row" data-tags="optional"><div class="time">Daytime</div><div class="detail">Pool day / Isla Mujeres optional<div class="tags"><span class="tag optional">Optional</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="park"><div class="time">Parks</div><div class="detail">Only Parks open: Xcaret Park and Xel-Há<div class="tags"><span class="tag park">Park</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags=""><div class="time">Bride &amp; Groom</div><div class="detail">Relaxing at the resort 🌴</div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
         </ul>
-      </article>
+      </details>
 
       <!-- Monday -->
-      <article class="day" id="monday" aria-labelledby="mon-title">
-        <header class="day-head">
-          <h3 class="day-title" id="mon-title">✈️ Monday, February 2 — Departure Day</h3>
-        </header>
+      <details class="day" id="monday" aria-labelledby="mon-title" open>
+        <summary>
+          <header class="day-head">
+            <div>
+              <h3 class="day-title" id="mon-title">✈️ Monday, February 2 — Departure Day</h3>
+            </div>
+            <div class="chev" aria-hidden="true"><span></span></div>
+          </header>
+        </summary>
         <ul class="timeline">
-          <li class="row"><div class="time">Mostly</div><div class="detail">a travel day for guests</div></li>
-          <li class="row"><div class="time">Breakfast</div><div class="detail"><em>Breakfast at Las Playas</em> <span class="note">(no reservation required — come and go)</span></div></li>
+          <li class="row" data-tags=""><div class="time">Mostly</div><div class="detail">a travel day for guests</div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="dining"><div class="time">Breakfast</div><div class="detail"><em>Breakfast at Las Playas</em> <span class="note">(no reservation required — come and go)</span><div class="tags"><span class="tag dining">Dining</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
         </ul>
-      </article>
+      </details>
 
     </main>
 
     <footer>
-      With love, Kendall &amp; Fabian — 🌅
+      <div class="help" aria-label="Need assistance">
+        <strong>Need assistance?</strong>
+        For reservations and dining/park requests, please email Guest Services at
+        <a href="mailto:dxguestservice@hotelxcaret.com">dxguestservice@hotelxcaret.com</a>.
+        <div style="margin-top:8px;">
+          <a class="u-btn" href="mailto:dxguestservice@hotelxcaret.com">✉️ Email Guest Services</a>
+          <a class="u-btn" href="https://chat.whatsapp.com/JJ0D7D8qJ9U3N2RvWMiJin" target="_blank" rel="noopener noreferrer">💬 WhatsApp group</a>
+        </div>
+      </div>
+
+      <div style="margin-top:14px;">
+        With love, Kendall &amp; Fabian — 🌅
+      </div>
     </footer>
 
   </div>
+
+  <script>
+    (function(){
+      // ---------- Filters ----------
+      const chips = Array.from(document.querySelectorAll('.chip[data-filter]'));
+      const rows = Array.from(document.querySelectorAll('.row[data-tags]'));
+      const clearBtn = document.getElementById('clear-filters');
+
+      function activeFilters(){
+        return chips
+          .filter(c => c.getAttribute('aria-pressed') === 'true')
+          .map(c => c.dataset.filter);
+      }
+
+      function applyFilters(){
+        const filters = activeFilters();
+        rows.forEach(r => {
+          const tagStr = (r.dataset.tags || '').toLowerCase();
+          if (!filters.length){
+            r.style.display = '';
+            return;
+          }
+          const matches = filters.every(f => tagStr.includes(f));
+          r.style.display = matches ? '' : 'none';
+        });
+      }
+
+      chips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          const pressed = chip.getAttribute('aria-pressed') === 'true';
+          chip.setAttribute('aria-pressed', String(!pressed));
+          applyFilters();
+        });
+      });
+
+      if (clearBtn){
+        clearBtn.addEventListener('click', () => {
+          chips.forEach(c => c.setAttribute('aria-pressed', 'false'));
+          applyFilters();
+        });
+      }
+
+      // ---------- Add-to-Calendar for timeline items ----------
+      const calButtons = Array.from(document.querySelectorAll('.cal-btn'));
+      
+      calButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const row = btn.closest('.row');
+          const timeText = row.querySelector('.time')?.textContent || '';
+          const detailText = row.querySelector('.detail em')?.textContent || row.querySelector('.detail')?.textContent || '';
+          
+          // Try to extract start time from the time text
+          const timeMatch = timeText.match(/(\d{1,2}):(\d{2})\s*(AM|PM)?/i);
+          if (!timeMatch) return;
+          
+          let hours = parseInt(timeMatch[1]);
+          const minutes = parseInt(timeMatch[2]);
+          const meridiem = timeMatch[3]?.toUpperCase();
+          
+          if (meridiem === 'PM' && hours !== 12) hours += 12;
+          if (meridiem === 'AM' && hours === 12) hours = 0;
+          
+          // Find which day this event is on by looking for parent details element
+          const dayElement = btn.closest('details');
+          const dayId = dayElement?.id || 'saturday';
+          
+          // Map day to date (Jan 28 - Feb 2, 2026)
+          const dayMap = {
+            'wednesday': new Date(2026, 0, 28, hours, minutes),
+            'thursday': new Date(2026, 0, 29, hours, minutes),
+            'friday': new Date(2026, 0, 30, hours, minutes),
+            'saturday': new Date(2026, 0, 31, hours, minutes),
+            'sunday': new Date(2026, 1, 1, hours, minutes),
+            'monday': new Date(2026, 1, 2, hours, minutes)
+          };
+          
+          const startDate = dayMap[dayId] || new Date(2026, 0, 31, hours, minutes);
+          const endDate = new Date(startDate.getTime() + 60 * 60 * 1000); // 1 hour duration
+          
+          const eventObj = {
+            title: 'Fabian & Kendall — ' + detailText,
+            location: 'Hotel Xcaret Mexico',
+            description: detailText + ' — per the Wedding Weekend itinerary.',
+            start: startDate,
+            end: endDate,
+            filename: detailText.replace(/[^\w\s]/g, '').replace(/\s+/g, '-') + '.ics'
+          };
+          
+          downloadICS(eventObj);
+        });
+      });
+
+      // ---------- Add-to-Calendar (ICS) ----------
+      const icsButtons = Array.from(document.querySelectorAll('button[data-ics]'));
+
+      function pad(n){ return String(n).padStart(2,'0'); }
+      function toICSDate(dt){
+        // Floating local time, formatted as YYYYMMDDTHHMMSS
+        return dt.getFullYear() + pad(dt.getMonth()+1) + pad(dt.getDate()) + 'T' +
+               pad(dt.getHours()) + pad(dt.getMinutes()) + '00';
+      }
+      function icsEscape(s){
+        return String(s || '')
+          .replace(/\\/g, '\\\\')
+          .replace(/\n/g, '\\n')
+          .replace(/,/g, '\\,')
+          .replace(/;/g, '\\;');
+      }
+
+      // NOTE: Dates reflect your itinerary (Jan 28 – Feb 2). Year set to 2026.
+      const events = {
+        welcome: {
+          filename: 'Welcome-Party.ics',
+          title: 'Fabian & Kendall — Welcome Party',
+          location: 'Hotel Xcaret Mexico',
+          start: new Date(2026, 0, 30, 17, 30), // Jan = 0
+          end:   new Date(2026, 0, 30, 19, 30),
+          description: 'Welcome Party — per the Wedding Weekend itinerary.'
+        },
+        ceremony: {
+          filename: 'Wedding-Ceremony.ics',
+          title: 'Fabian & Kendall — Wedding Ceremony',
+          location: 'Hotel Xcaret Mexico',
+          start: new Date(2026, 0, 31, 16, 30),
+          end:   new Date(2026, 0, 31, 17, 30),
+          description: 'All guests meet at the Main Lobby at 4:00 PM (guests will be escorted to the chapel).'
+        },
+        reception: {
+          filename: 'Reception.ics',
+          title: 'Fabian & Kendall — Reception',
+          location: 'Playón Viento, Hotel Xcaret Mexico',
+          start: new Date(2026, 0, 31, 19, 0),
+          end:   new Date(2026, 0, 31, 23, 0),
+          description: 'Reception at Playón Viento — per the Wedding Weekend itinerary.'
+        },
+        brunch: {
+          filename: 'Brunch.ics',
+          title: 'Fabian & Kendall — Brunch',
+          location: 'Las Cuevas (Kayak), Hotel Xcaret Mexico',
+          start: new Date(2026, 1, 1, 11, 0), // Feb = 1
+          end:   new Date(2026, 1, 1, 13, 0),
+          description: 'Brunch at Las Cuevas (Kayak) — per the Wedding Weekend itinerary.'
+        }
+      };
+
+      function downloadICS(evt){
+        const uid = 'wedding-weekend-' + Math.random().toString(16).slice(2) + '@kendallandfabian';
+        const dtstamp = toICSDate(new Date());
+        const dtstart = toICSDate(evt.start);
+        const dtend   = toICSDate(evt.end);
+
+        const ics =
+`BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kendall & Fabian//Wedding Weekend//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:${uid}
+DTSTAMP:${dtstamp}
+DTSTART:${dtstart}
+DTEND:${dtend}
+SUMMARY:${icsEscape(evt.title)}
+LOCATION:${icsEscape(evt.location)}
+DESCRIPTION:${icsEscape(evt.description)}
+END:VEVENT
+END:VCALENDAR`;
+
+        const blob = new Blob([ics], {type: 'text/calendar;charset=utf-8'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = evt.filename || 'event.ics';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 500);
+      }
+
+      icsButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const key = btn.dataset.ics;
+          if (events[key]) downloadICS(events[key]);
+        });
+      });
+
+      // ---------- What’s next widget ----------
+      const nextTitle = document.getElementById('nextup-title');
+      const nextSub = document.getElementById('nextup-sub');
+      const expandTodayBtn = document.getElementById('expand-today');
+
+      // Build a minimal list of key timed events (from your itinerary)
+      const keyEvents = [
+        { id:'wednesday', label:'Wed — Check-in (7:30 AM)', time: new Date(2026,0,28,7,30), anchor:'#wednesday' },
+        { id:'thursday',  label:'Thu — Xoximilco Floating Fiesta! (6:00 PM)', time: new Date(2026,0,29,18,0), anchor:'#thursday' },
+        { id:'friday',    label:'Fri — Welcome Party (5:30 PM)', time: new Date(2026,0,30,17,30), anchor:'#friday' },
+        { id:'saturday',  label:'Sat — Meet at Main Lobby (4:00 PM)', time: new Date(2026,0,31,16,0), anchor:'#saturday' },
+        { id:'saturday',  label:'Sat — Wedding Ceremony (4:30 PM)', time: new Date(2026,0,31,16,30), anchor:'#saturday' },
+        { id:'sunday',    label:'Sun — Brunch (11:00 AM)', time: new Date(2026,1,1,11,0), anchor:'#sunday' }
+      ];
+
+      function sameDay(a,b){
+        return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate();
+      }
+
+      function updateNext(){
+        const now = new Date();
+        const upcoming = keyEvents
+          .map(e => ({...e, diff: e.time - now}))
+          .filter(e => e.diff > 0)
+          .sort((a,b) => a.diff - b.diff)[0];
+
+        if (!nextTitle) return;
+
+        if (upcoming){
+          nextTitle.textContent = upcoming.label;
+          if (nextSub){
+            nextSub.textContent = 'Based on your device time. Tap a day or use the jump links above.';
+          }
+          if (expandTodayBtn){
+            expandTodayBtn.onclick = () => {
+              const el = document.getElementById(upcoming.id);
+              if (el && el.tagName.toLowerCase() === 'details'){
+                el.open = true;
+                el.scrollIntoView({behavior:'smooth', block:'start'});
+              }
+            };
+          }
+        } else {
+          // If past all events, default to Saturday open
+          nextTitle.textContent = 'You can jump to any day below — enjoy the weekend!';
+          if (expandTodayBtn){
+            expandTodayBtn.onclick = () => {
+              const el = document.getElementById('saturday');
+              if (el && el.tagName.toLowerCase() === 'details'){
+                el.open = true;
+                el.scrollIntoView({behavior:'smooth', block:'start'});
+              }
+            };
+          }
+        }
+      }
+
+      updateNext();
+      setInterval(updateNext, 60 * 1000);
+
+      // ---------- Open today’s card (best-effort) ----------
+      function openCardForToday(){
+        const today = new Date();
+        const map = [
+          { id:'wednesday', date: new Date(2026,0,28) },
+          { id:'thursday',  date: new Date(2026,0,29) },
+          { id:'friday',    date: new Date(2026,0,30) },
+          { id:'saturday',  date: new Date(2026,0,31) },
+          { id:'sunday',    date: new Date(2026,1,1) },
+          { id:'monday',    date: new Date(2026,1,2) }
+        ];
+        const match = map.find(d => sameDay(d.date, today));
+        if (!match) return false;
+
+        const el = document.getElementById(match.id);
+        if (el && el.tagName.toLowerCase() === 'details'){
+          el.open = true;
+          return true;
+        }
+        return false;
+      }
+
+      // Run once on load (non-invasive)
+      openCardForToday();
+
+      // ---------- Fix anchor jump for details (ensure it opens) ----------
+      function openOnHash(){
+        const hash = window.location.hash || '';
+        if (!hash) return;
+        const el = document.querySelector(hash);
+        if (el && el.tagName.toLowerCase() === 'details'){
+          el.open = true;
+        }
+      }
+      window.addEventListener('hashchange', openOnHash);
+      openOnHash();
+
+      // ---------- Safety: remove the accidental stray characters if any got pasted ----------
+      // (No-op: kept intentionally empty.)
+    })();
+  </script>
 </body>
 </html>
