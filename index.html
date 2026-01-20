@@ -644,6 +644,10 @@
       font-size: .95rem;
       letter-spacing: .01em;
       white-space:nowrap;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: flex-start;
     }
 
     .detail{
@@ -673,20 +677,20 @@
     .tags{
       display:flex;
       flex-wrap:wrap;
-      gap:6px;
-      margin-top: 6px;
+      gap:3px;
+      margin-top: 0;
     }
     .tag{
       display:inline-flex;
       align-items:center;
-      padding: 6px 10px;
+      padding: 2px 6px;
       border-radius: 999px;
       border: 1px solid rgba(31,45,43,.10);
       background: rgba(255,255,255,.74);
-      font-size: .78rem;
-      font-weight: 800;
+      font-size: .65rem;
+      font-weight: 700;
       color: var(--muted);
-      letter-spacing: .03em;
+      letter-spacing: .02em;
       text-transform: uppercase;
     }
     .tag.wedding{ border-color: rgba(198,162,91,.22); color:#7a5c23; background: rgba(198,162,91,.10); }
@@ -938,12 +942,12 @@
           </header>
         </summary>
         <ul class="timeline">
-          <li class="row" data-tags="meet"><div class="time">7:30 AM</div><div class="detail"><em>Check-in</em><div class="tags"><span class="tag meet">Meet-up</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="park"><div class="time">9:00 AM – 2:00 PM</div><div class="detail"><em>Xenses</em><div class="tags"><span class="tag park">Park</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="dining"><div class="time">2:15 PM</div><div class="detail"><em>Lunch at Las Playas</em><div class="tags"><span class="tag dining">Dining</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="park"><div class="time">4:00 PM</div><div class="detail"><em>Xcaret Park</em><div class="tags"><span class="tag park">Park</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="park"><div class="time">7:00 PM – 9:00 PM</div><div class="detail"><em>México Espectacular show</em><div class="tags"><span class="tag park">Park</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="dining"><div class="time">10:00 PM</div><div class="detail"><em>Late Dinner at Las Sillas</em> <span class="note">(closes 11:00 PM)</span><div class="tags"><span class="tag dining">Dining</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="meet"><div class="time">7:30 AM<div class="tags"><span class="tag meet">Meet-up</span></div></div><div class="detail"><em>Check-in</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="park"><div class="time">9:00 AM – 2:00 PM<div class="tags"><span class="tag park">Park</span></div></div><div class="detail"><em>Xenses</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="dining"><div class="time">2:15 PM<div class="tags"><span class="tag dining">Dining</span></div></div><div class="detail"><em>Lunch at Las Playas</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="park"><div class="time">4:00 PM<div class="tags"><span class="tag park">Park</span></div></div><div class="detail"><em>Xcaret Park</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="park"><div class="time">7:00 PM – 9:00 PM<div class="tags"><span class="tag park">Park</span></div></div><div class="detail"><em>México Espectacular show</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="dining"><div class="time">10:00 PM<div class="tags"><span class="tag dining">Dining</span></div></div><div class="detail"><em>Late Dinner at Las Sillas</em> <span class="note">(closes 11:00 PM)</span></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
         </ul>
       </details>
 
@@ -958,10 +962,10 @@
           </header>
         </summary>
         <ul class="timeline">
-          <li class="row" data-tags="dining"><div class="time">9:00 AM</div><div class="detail"><em>Breakfast at Arriba Baja</em><div class="tags"><span class="tag dining">Dining</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="park"><div class="time">10:40 AM</div><div class="detail"><em>Xplor Park</em> <span class="note">(4–5 hours)</span><div class="tags"><span class="tag park">Park</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="dining"><div class="time">3:00 PM</div><div class="detail"><em>Lunch at El Mercado</em><div class="tags"><span class="tag dining">Dining</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="park,meet"><div class="time">6:00 PM</div><div class="detail"><em>Xoximilco Floating Fiesta!</em> <span class="note">(meet at lobby)</span><div class="tags"><span class="tag park">Park</span><span class="tag meet">Meet-up</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="dining"><div class="time">9:00 AM<div class="tags"><span class="tag dining">Dining</span></div></div><div class="detail"><em>Breakfast at Arriba Baja</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="park"><div class="time">10:40 AM<div class="tags"><span class="tag park">Park</span></div></div><div class="detail"><em>Xplor Park</em> <span class="note">(4–5 hours)</span></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="dining"><div class="time">3:00 PM<div class="tags"><span class="tag dining">Dining</span></div></div><div class="detail"><em>Lunch at El Mercado</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="park,meet"><div class="time">6:00 PM<div class="tags"><span class="tag park">Park</span><span class="tag meet">Meet-up</span></div></div><div class="detail"><em>Xoximilco Floating Fiesta!</em> <span class="note">(meet at lobby)</span></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
         </ul>
       </details>
 
@@ -976,13 +980,13 @@
           </header>
         </summary>
         <ul class="timeline">
-          <li class="row" data-tags="dining"><div class="time">8:00 AM</div><div class="detail"><em>Breakfast at Fuego</em><div class="tags"><span class="tag dining">Dining</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="dining"><div class="time">8:00 AM<div class="tags"><span class="tag dining">Dining</span></div></div><div class="detail"><em>Breakfast at Fuego</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
           <li class="row" data-tags=""><div class="time">Daytime</div><div class="detail">Pool / relax / enjoy the resort</div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
 
-          <li class="row" data-tags="wedding"><div class="time">5:30 PM</div><div class="detail"><em>Welcome Party</em><div class="tags"><span class="tag wedding">Wedding Event</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="wedding"><div class="time">6:30 PM</div><div class="detail"><em>Rehearsal</em><div class="tags"><span class="tag wedding">Wedding Event</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="meet"><div class="time">7:00 PM</div><div class="detail"><em>Lobby Bar</em><div class="tags"><span class="tag meet">Meet-up</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="dining"><div class="time">8:00 PM</div><div class="detail"><em>Dinner at El Mercado</em> <span class="note">(no reservation needed — come and go as you please)</span><div class="tags"><span class="tag dining">Dining</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="wedding"><div class="time">5:30 PM<div class="tags"><span class="tag wedding">Wedding Event</span></div></div><div class="detail"><em>Welcome Party</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="wedding"><div class="time">6:30 PM<div class="tags"><span class="tag wedding">Wedding Event</span></div></div><div class="detail"><em>Rehearsal</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="meet"><div class="time">7:00 PM<div class="tags"><span class="tag meet">Meet-up</span></div></div><div class="detail"><em>Lobby Bar</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="dining"><div class="time">8:00 PM<div class="tags"><span class="tag dining">Dining</span></div></div><div class="detail"><em>Dinner at El Mercado</em> <span class="note">(no reservation needed — come and go as you please)</span></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
 
           <li class="row optional" data-tags="park,optional">
             <div class="time">Optional</div>
@@ -1014,18 +1018,17 @@
 
           <!-- Same content, simply highlighted for scanability -->
           <li class="row" data-tags="meet,wedding">
-            <div class="time">4:00 PM</div>
+            <div class="time">4:00 PM<div class="tags"><span class="tag meet">Meet-up</span><span class="tag wedding">Wedding Event</span></div></div>
             <div class="detail">
               <em>All guests meet at the Main Lobby</em> <span class="note">(guests will be escorted to the chapel)</span>
-              <div class="tags"><span class="tag meet">Meet-up</span><span class="tag wedding">Wedding Event</span></div>
             </div>
             <button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button>
           </li>
 
-          <li class="row" data-tags="wedding"><div class="time">4:30 PM</div><div class="detail"><em>Wedding Ceremony</em><div class="tags"><span class="tag wedding">Wedding Event</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="wedding"><div class="time">6:00 PM</div><div class="detail"><em>Cocktail Hour at Playón Viento</em><div class="tags"><span class="tag wedding">Wedding Event</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="wedding"><div class="time">7:00 PM</div><div class="detail"><em>Reception at Playón Viento</em><div class="tags"><span class="tag wedding">Wedding Event</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="wedding,optional"><div class="time">11:00 PM</div><div class="detail"><em>After Party: Los Faroles or Xupes</em> 🎉<div class="tags"><span class="tag wedding">Wedding Event</span><span class="tag optional">Optional</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="wedding"><div class="time">4:30 PM<div class="tags"><span class="tag wedding">Wedding Event</span></div></div><div class="detail"><em>Wedding Ceremony</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="wedding"><div class="time">6:00 PM<div class="tags"><span class="tag wedding">Wedding Event</span></div></div><div class="detail"><em>Cocktail Hour at Playón Viento</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="wedding"><div class="time">7:00 PM<div class="tags"><span class="tag wedding">Wedding Event</span></div></div><div class="detail"><em>Reception at Playón Viento</em></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="wedding,optional"><div class="time">11:00 PM<div class="tags"><span class="tag wedding">Wedding Event</span><span class="tag optional">Optional</span></div></div><div class="detail"><em>After Party: Los Faroles or Xupes</em> 🎉</div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
         </ul>
       </details>
 
@@ -1052,8 +1055,8 @@
             </div>
             <button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button>
           </li>
-          <li class="row" data-tags="optional"><div class="time">Daytime</div><div class="detail">Pool day / Isla Mujeres optional<div class="tags"><span class="tag optional">Optional</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="park"><div class="time">Parks</div><div class="detail">Only Parks open: Xcaret Park and Xel-Há<div class="tags"><span class="tag park">Park</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="optional"><div class="time">Daytime<div class="tags"><span class="tag optional">Optional</span></div></div><div class="detail">Pool day / Isla Mujeres optional</div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="park"><div class="time">Parks<div class="tags"><span class="tag park">Park</span></div></div><div class="detail">Only Parks open: Xcaret Park and Xel-Há</div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
           <li class="row" data-tags=""><div class="time">Bride &amp; Groom</div><div class="detail">Relaxing at the resort 🌴</div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
         </ul>
       </details>
@@ -1070,7 +1073,7 @@
         </summary>
         <ul class="timeline">
           <li class="row" data-tags=""><div class="time">Mostly</div><div class="detail">a travel day for guests</div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
-          <li class="row" data-tags="dining"><div class="time">Breakfast</div><div class="detail"><em>Breakfast at Las Playas</em> <span class="note">(no reservation required — come and go)</span><div class="tags"><span class="tag dining">Dining</span></div></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
+          <li class="row" data-tags="dining"><div class="time">Breakfast<div class="tags"><span class="tag dining">Dining</span></div></div><div class="detail"><em>Breakfast at Las Playas</em> <span class="note">(no reservation required — come and go)</span></div><button class="cal-btn" type="button" aria-label="Add to calendar">➕ Add to calendar</button></li>
         </ul>
       </details>
 
