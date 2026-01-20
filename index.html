@@ -770,6 +770,41 @@
       html{ scroll-behavior:auto; }
       .btn, .chev span{ transition:none !important; }
     }
+
+    /* Mobile optimizations */
+    @media(max-width:640px){
+      .wrap{ padding: 56px 12px 24px; }
+      
+      .utility-inner{ padding: 8px 12px; }
+      .utility-left{ min-width: auto; gap: 8px; }
+      .utility-title strong{ font-size: .80rem; }
+      .utility-title span{ font-size: .72rem; }
+      .brand-mark{ width: 28px; height: 28px; }
+      
+      .utility-actions{ gap: 4px; }
+      .u-btn{ padding: 8px 10px; font-size: .80rem; }
+      
+      .hero-inner{ padding: 20px 14px 12px; }
+      .title{ font-size: clamp(1.4rem, 2.5vw, 2rem); margin: 8px 0 6px; }
+      .subtitle{ font-size: .92rem; }
+      
+      .hero-bottom{ padding: 12px 14px 14px; flex-direction: column; gap: 12px; }
+      .must-attend{ gap: 6px; }
+      .pill{ padding: 8px 10px; font-size: .85rem; }
+      
+      .nav{ width: 100%; justify-content: flex-start; }
+      .nav a{ padding: 8px 10px; font-size: .85rem; }
+      
+      .section-inner{ padding: 14px 14px 12px; }
+      .section h2{ font-size: 1.1rem; margin-bottom: 8px; }
+      
+      .grid{ grid-template-columns: 1fr; gap: 10px; }
+      
+      .row{ grid-template-columns: auto 1fr; padding: 8px 8px; padding-right: 60px; gap: 8px; }
+      .time{ font-size: .88rem; }
+      .detail{ font-size: .92rem; }
+      .cal-btn{ padding: 2px 3px; font-size: 0.75rem; right: 4px; }
+    }
   </style>
 </head>
 
