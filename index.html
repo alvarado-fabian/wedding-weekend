@@ -21,7 +21,6 @@
 
   <style>
     :root{
-      /* Xcaret-ish: warm stone + deep jungle/jade + soft gold */
       --stone-50:#fbfaf7;
       --stone-100:#f4f1ea;
       --stone-200:#e9e2d7;
@@ -41,9 +40,9 @@
       --radius-md: 14px;
 
       --max: 1040px;
-
       --focus: 0 0 0 3px rgba(31,143,131,.25), 0 0 0 1px rgba(31,143,131,.45);
 
+      /* dynamically set via JS to avoid “banner blocks content” on mobile */
       --utility-h: 64px;
     }
 
@@ -147,10 +146,12 @@
     .utility-title strong{
       font-size: .92rem;
       letter-spacing: .01em;
+      font-weight: 900;
     }
     .utility-title span{
       font-size: .82rem;
       color: var(--muted);
+      font-weight: 600;
     }
 
     .utility-actions{
@@ -170,7 +171,7 @@
       border: 1px solid rgba(31,45,43,.10);
       background: rgba(255,255,255,.72);
       color: var(--ink);
-      font-weight: 700;
+      font-weight: 800;
       font-size: .88rem;
       min-height: 40px;
       white-space:nowrap;
@@ -183,7 +184,7 @@
     }
     .u-btn:hover{ text-decoration:none; filter: brightness(1.01); }
 
-    /* Mobile drawer */
+    /* Mobile menu (reduces “banner blocks content”) */
     .utility-toggle{ display:none; }
     .utility-drawer{ display:none; }
 
@@ -214,7 +215,7 @@
       border-radius: 999px;
       background: rgba(255,255,255,.14);
       border: 1px solid rgba(255,255,255,.18);
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: .06em;
       text-transform: uppercase;
       font-size: .78rem;
@@ -231,7 +232,7 @@
     .subtitle{
       margin:0;
       color: rgba(255,255,255,.88);
-      font-weight: 400;
+      font-weight: 500;
       font-size: 1.02rem;
       max-width: 60ch;
     }
@@ -253,7 +254,7 @@
       gap:8px;
       align-items:center;
       color: rgba(255,255,255,.92);
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .pill{
@@ -283,7 +284,7 @@
       background: rgba(255,255,255,.10);
       border: 1px solid rgba(255,255,255,.16);
       backdrop-filter: blur(6px);
-      font-weight: 700;
+      font-weight: 800;
       font-size: .92rem;
     }
     .nav a:hover{ background: rgba(255,255,255,.16); }
@@ -331,13 +332,13 @@
       gap:10px;
       align-items:flex-start;
       color: var(--ink);
-      font-weight: 700;
+      font-weight: 800;
     }
-    .callout span{ font-weight: 800; }
+    .callout span{ font-weight: 900; }
     .callout small{
       display:block;
       color: var(--muted);
-      font-weight: 400;
+      font-weight: 500;
       margin-top: 2px;
     }
 
@@ -357,7 +358,7 @@
       border-radius: 999px;
       border: 1px solid rgba(31,45,43,.10);
       background: rgba(255,255,255,.76);
-      font-weight: 800;
+      font-weight: 900;
       font-size: .9rem;
       cursor:pointer;
       user-select:none;
@@ -367,7 +368,7 @@
       border-color: rgba(31,143,131,.20);
     }
     .chip small{
-      font-weight: 700;
+      font-weight: 800;
       color: var(--muted);
     }
 
@@ -385,7 +386,7 @@
       gap:10px;
       padding: 12px 12px;
       border-radius: 999px;
-      font-weight: 800;
+      font-weight: 900;
       border: 1px solid rgba(255,255,255,.18);
       background: linear-gradient(180deg, var(--jade-600), var(--jade-700));
       color: #fff;
@@ -418,6 +419,7 @@
       letter-spacing: .06em;
       text-transform: uppercase;
       color: var(--muted);
+      font-weight: 900;
     }
     .group .links{ margin-top: 0; }
 
@@ -507,41 +509,15 @@
       grid-template-columns: 140px 1fr;
       gap: 12px;
       padding: 10px 10px;
-      padding-right: 56px; /* ✅ NEW: reserve space for the + button */
+      padding-right: 64px; /* reserve space for calendar button */
       border-radius: 12px;
       border: 1px solid rgba(31,45,43,.06);
       background: rgba(251,250,247,.75);
       position: relative;
     }
 
-    /* tiny + button */
-    .cal-btn{
-      position: absolute;
-      right: 10px;
-      top: 10px;
-      width: 34px;
-      height: 34px;
-      display:grid;
-      place-items:center;
-      border-radius: 999px;
-      background: rgba(255,255,255,.78);
-      border: 1px solid rgba(31,45,43,.10);
-      font-size: 1.05rem;
-      font-weight: 900;
-      line-height: 1;
-      cursor: pointer;
-      opacity: .9;
-      transition: background .15s ease, opacity .15s ease, transform .15s ease;
-    }
-    .cal-btn:hover{
-      opacity: 1;
-      background: rgba(31,143,131,.12);
-      transform: translateY(-1px);
-    }
-    .cal-btn:active{ transform: translateY(0); }
-
     .time{
-      font-weight: 800;
+      font-weight: 900;
       color: var(--jade-700);
       font-size: .95rem;
       letter-spacing: .01em;
@@ -558,13 +534,14 @@
     }
     .detail em{
       font-style: normal;
-      font-weight: 800;
+      font-weight: 900;
       color: var(--ink);
     }
     .note{
       margin-top: 6px;
       color: var(--muted);
       font-size: .93rem;
+      font-weight: 600;
     }
 
     .row.optional{
@@ -588,7 +565,7 @@
       border: 1px solid rgba(31,45,43,.10);
       background: rgba(255,255,255,.74);
       font-size: .65rem;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--muted);
       letter-spacing: .02em;
       text-transform: uppercase;
@@ -598,6 +575,50 @@
     .tag.dining{ border-color: rgba(31,45,43,.14); color: var(--ink); background: rgba(31,45,43,.06); }
     .tag.optional{ border-color: rgba(198,162,91,.26); color:#7a5c23; background: rgba(198,162,91,.12); }
     .tag.meet{ border-color: rgba(31,143,131,.18); color: var(--jade-700); background: rgba(31,143,131,.08); }
+
+    /* Calendar + button (hidden until hover/focus on desktop) */
+    .cal-btn{
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      width: 36px;
+      height: 36px;
+      display:grid;
+      place-items:center;
+      border-radius: 999px;
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(31,45,43,.12);
+      font-size: 1.15rem;
+      font-weight: 900;
+      line-height: 1;
+      cursor: pointer;
+
+      /* hidden by default */
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-1px);
+      transition: opacity .15s ease, transform .15s ease, background .15s ease;
+    }
+    .row:hover .cal-btn,
+    .row:focus-within .cal-btn{
+      opacity: .96;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .cal-btn:hover{
+      opacity: 1;
+      background: rgba(31,143,131,.12);
+    }
+    .cal-btn:active{ transform: translateY(1px); }
+
+    /* On touch devices, show the button (no hover) */
+    @media (hover: none), (pointer: coarse){
+      .cal-btn{
+        opacity: .96;
+        pointer-events: auto;
+        transform: none;
+      }
+    }
 
     /* Footer */
     footer{
@@ -614,13 +635,14 @@
       border: 1px solid rgba(31,45,43,.10);
       background: rgba(255,255,255,.70);
     }
-    .help strong{ display:block; margin-bottom: 4px; }
-    .help a{ font-weight: 800; }
+    .help strong{ display:block; margin-bottom: 4px; font-weight: 900; }
+    .help a{ font-weight: 900; }
 
-    /* Mobile optimizations */
+    /* Mobile optimizations: no overlap, + becomes its own grid cell */
     @media(max-width:640px){
       .wrap{ padding: calc(var(--utility-h) + 10px) 12px 24px; }
 
+      /* collapse utility into a menu */
       .utility-inner{ padding: 8px 12px; align-items: stretch; }
       .utility-actions{ display:none; }
 
@@ -678,10 +700,10 @@
         min-height: 42px;
       }
 
+      /* hero spacing */
       .hero-inner{ padding: 20px 14px 12px; }
       .title{ font-size: 1.65rem; margin: 10px 0 6px; }
       .subtitle{ font-size: .92rem; }
-
       .hero-bottom{
         padding: 12px 14px 14px;
         flex-direction: column;
@@ -692,6 +714,7 @@
       .nav{ width: 100%; justify-content: flex-start; }
       .nav a{ padding: 8px 10px; font-size: .85rem; }
 
+      /* rows become 2-column with + as its own column */
       .row{
         grid-template-columns: 1fr auto;
         grid-template-areas:
@@ -700,16 +723,23 @@
         column-gap: 10px;
         row-gap: 6px;
         align-items: start;
-        padding-right: 10px; /* reset desktop reserve */
+        padding-right: 10px; /* no reserved overlay space on mobile */
       }
       .row .time{ grid-area: time; white-space: normal; }
       .row .detail{ grid-area: detail; }
+
       .cal-btn{
         position: static;
         grid-area: cal;
-        width: 36px;
-        height: 36px;
+        width: 38px;
+        height: 38px;
       }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior:auto; }
+      .cal-btn{ transition:none !important; }
     }
   </style>
 </head>
@@ -918,6 +948,7 @@
             <div class="detail"><em>✅ Highly Recommended: Xplor Fuego</em> <span class="note">Shuttles 7:00 PM – 10:30 PM, every 30 min</span>
               <div class="tags"><span class="tag park">Park</span><span class="tag optional">Optional</span></div>
             </div>
+            <button class="cal-btn" type="button" aria-label="Add to calendar" title="Add to calendar">+</button>
           </li>
         </ul>
       </details>
@@ -1023,7 +1054,7 @@
 
   <script>
     (function(){
-      // ===== Mobile utility drawer toggle + dynamic wrap padding =====
+      // ===== Utility height auto-fix (prevents banner blocking content) =====
       const utility = document.getElementById('utility');
       const toggle = document.getElementById('utilityToggle');
       const drawer = document.getElementById('utilityDrawer');
@@ -1115,58 +1146,13 @@
         });
       });
 
-      // ---------- Add-to-Calendar for timeline items ----------
-      const calButtons = Array.from(document.querySelectorAll('.cal-btn'));
-
-      calButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const row = btn.closest('.row');
-          const timeText = row.querySelector('.time')?.textContent || '';
-          const detailText = row.querySelector('.detail em')?.textContent || row.querySelector('.detail')?.textContent || '';
-
-          const timeMatch = timeText.match(/(\d{1,2}):(\d{2})\s*(AM|PM)?/i);
-          if (!timeMatch) return;
-
-          let hours = parseInt(timeMatch[1], 10);
-          const minutes = parseInt(timeMatch[2], 10);
-          const meridiem = timeMatch[3]?.toUpperCase();
-
-          if (meridiem === 'PM' && hours !== 12) hours += 12;
-          if (meridiem === 'AM' && hours === 12) hours = 0;
-
-          const dayElement = btn.closest('details');
-          const dayId = dayElement?.id || 'saturday';
-
-          const dayMap = {
-            'wednesday': new Date(2026, 0, 28, hours, minutes),
-            'thursday':  new Date(2026, 0, 29, hours, minutes),
-            'friday':    new Date(2026, 0, 30, hours, minutes),
-            'saturday':  new Date(2026, 0, 31, hours, minutes),
-            'sunday':    new Date(2026, 1, 1, hours, minutes),
-            'monday':    new Date(2026, 1, 2, hours, minutes)
-          };
-
-          const startDate = dayMap[dayId] || new Date(2026, 0, 31, hours, minutes);
-          const endDate = new Date(startDate.getTime() + 60 * 60 * 1000);
-
-          const eventObj = {
-            title: 'Fabian & Kendall — ' + detailText,
-            location: 'Hotel Xcaret Mexico',
-            description: detailText + ' — per the Wedding Weekend itinerary.',
-            start: startDate,
-            end: endDate,
-            filename: detailText.replace(/[^\w\s]/g, '').replace(/\s+/g, '-') + '.ics'
-          };
-
-          downloadICS(eventObj);
-        });
-      });
-
-      // ---------- ICS helpers ----------
+      // ---------- Calendar helpers ----------
       function pad(n){ return String(n).padStart(2,'0'); }
-      function toICSDate(dt){
-        return dt.getFullYear() + pad(dt.getMonth()+1) + pad(dt.getDate()) + 'T' +
-               pad(dt.getHours()) + pad(dt.getMinutes()) + '00';
+      function ymd(dt){
+        return dt.getFullYear() + pad(dt.getMonth()+1) + pad(dt.getDate());
+      }
+      function toICSDateTime(dt){
+        return ymd(dt) + 'T' + pad(dt.getHours()) + pad(dt.getMinutes()) + '00';
       }
       function icsEscape(s){
         return String(s || '')
@@ -1175,15 +1161,26 @@
           .replace(/,/g, '\\,')
           .replace(/;/g, '\\;');
       }
+      function isIOS(){
+        const ua = navigator.userAgent || '';
+        return /iPad|iPhone|iPod/.test(ua) || (ua.includes('Mac') && 'ontouchend' in document);
+      }
 
-      function downloadICS(evt){
+      function buildICS(evt){
         const uid = 'wedding-weekend-' + Math.random().toString(16).slice(2) + '@kendallandfabian';
-        const dtstamp = toICSDate(new Date());
-        const dtstart = toICSDate(evt.start);
-        const dtend   = toICSDate(evt.end);
+        const dtstamp = toICSDateTime(new Date());
 
-        const ics =
-`BEGIN:VCALENDAR
+        let dtLines = '';
+        if (evt.allDay){
+          // DTSTART;VALUE=DATE and DTEND;VALUE=DATE (next day) for all-day events
+          const startYMD = ymd(evt.start);
+          const endYMD = ymd(evt.end);
+          dtLines = `DTSTART;VALUE=DATE:${startYMD}\nDTEND;VALUE=DATE:${endYMD}`;
+        } else {
+          dtLines = `DTSTART:${toICSDateTime(evt.start)}\nDTEND:${toICSDateTime(evt.end)}`;
+        }
+
+        return `BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Kendall & Fabian//Wedding Weekend//EN
 CALSCALE:GREGORIAN
@@ -1191,24 +1188,121 @@ METHOD:PUBLISH
 BEGIN:VEVENT
 UID:${uid}
 DTSTAMP:${dtstamp}
-DTSTART:${dtstart}
-DTEND:${dtend}
+${dtLines}
 SUMMARY:${icsEscape(evt.title)}
 LOCATION:${icsEscape(evt.location)}
 DESCRIPTION:${icsEscape(evt.description)}
 END:VEVENT
 END:VCALENDAR`;
+      }
 
-        const blob = new Blob([ics], {type: 'text/calendar;charset=utf-8'});
-        const url = URL.createObjectURL(blob);
+      function downloadICS(evt){
+        const ics = buildICS(evt);
+        const filename = evt.filename || 'event.ics';
+
+        // Primary: Blob + download (most browsers)
+        try {
+          const blob = new Blob([ics], {type: 'text/calendar;charset=utf-8'});
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = filename;
+
+          // iOS Safari often ignores download; fallback to opening the file
+          if (isIOS()){
+            a.removeAttribute('download');
+            a.target = '_blank';
+          }
+
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          setTimeout(() => URL.revokeObjectURL(url), 800);
+          return;
+        } catch (e) {
+          // continue to fallback
+        }
+
+        // Fallback: data URL
+        const dataUrl = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
         const a = document.createElement('a');
-        a.href = url;
-        a.download = evt.filename || 'event.ics';
+        a.href = dataUrl;
+        a.download = filename;
+        a.target = '_blank';
         document.body.appendChild(a);
         a.click();
         a.remove();
-        setTimeout(() => URL.revokeObjectURL(url), 500);
       }
+
+      // ---------- Add-to-calendar for each row ----------
+      const calButtons = Array.from(document.querySelectorAll('.cal-btn'));
+
+      // Map day id to date (Jan 28 – Feb 2, 2026)
+      const dayToDate = {
+        'wednesday': new Date(2026, 0, 28),
+        'thursday':  new Date(2026, 0, 29),
+        'friday':    new Date(2026, 0, 30),
+        'saturday':  new Date(2026, 0, 31),
+        'sunday':    new Date(2026, 1, 1),
+        'monday':    new Date(2026, 1, 2)
+      };
+
+      function cloneWithTime(baseDate, h, m){
+        return new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), h, m, 0, 0);
+      }
+
+      calButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const row = btn.closest('.row');
+          const dayElement = btn.closest('details');
+          const dayId = dayElement?.id || 'saturday';
+          const baseDate = dayToDate[dayId] || new Date(2026, 0, 31);
+
+          const timeText = (row.querySelector('.time')?.textContent || '').trim();
+          const detailText =
+            (row.querySelector('.detail em')?.textContent || row.querySelector('.detail')?.textContent || '').trim();
+
+          // Try to parse a specific time like 4:30 PM
+          const timeMatch = timeText.match(/(\d{1,2}):(\d{2})\s*(AM|PM)?/i);
+
+          let start, end, allDay = false;
+
+          if (timeMatch){
+            let hours = parseInt(timeMatch[1], 10);
+            const minutes = parseInt(timeMatch[2], 10);
+            const meridiem = timeMatch[3]?.toUpperCase();
+
+            if (meridiem === 'PM' && hours !== 12) hours += 12;
+            if (meridiem === 'AM' && hours === 12) hours = 0;
+
+            start = cloneWithTime(baseDate, hours, minutes);
+            end = new Date(start.getTime() + 60 * 60 * 1000); // default 1 hour
+          } else {
+            // For Morning/Daytime/Mostly/etc, create an all-day event
+            allDay = true;
+            start = new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate());
+            end = new Date(start.getFullYear(), start.getMonth(), start.getDate() + 1);
+          }
+
+          const safeName = (detailText || 'Event')
+            .replace(/[^\w\s-]/g, '')
+            .replace(/\s+/g, '-')
+            .slice(0, 60);
+
+          downloadICS({
+            filename: safeName + '.ics',
+            title: 'Fabian & Kendall — ' + (detailText || 'Wedding Weekend'),
+            location: 'Hotel Xcaret Mexico',
+            description: (detailText || 'Wedding Weekend itinerary item.') + ' — per the Wedding Weekend itinerary.',
+            start,
+            end,
+            allDay
+          });
+        }, {passive:false});
+      });
 
       // ---------- Fix anchor jump for details (ensure it opens) ----------
       function openOnHash(){
